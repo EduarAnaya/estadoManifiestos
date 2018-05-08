@@ -1,0 +1,68 @@
+
+.rowItem {
+    display:block;
+    margin-top: 20px;
+}
+
+.rowTitulo{
+  background-color: #343a40;
+  color: white;
+  border-radius: 5px 5px 0px 0px;
+}
+#estData {
+    text-align: center;
+}
+
+.cajatabla{
+    overflow: auto;
+}
+span.badge {
+    width: 100px;
+    padding: inherit;
+}
+tr {
+    text-align: center;
+}
+.rowContadores{
+    display: contents;
+}
+.contadores {
+    font-size: 3rem;
+    text-align: center;
+}
+.detContador{
+    font-size: 1.5rem;
+  text-align: end;
+}
+.rowTotal {
+    border-top: 1px solid #d6d6d6;
+}
+.cajaTotal{
+   text-align: end;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 0;
+    color: #495057;
+    font-size: x-large;
+}
+dd {
+    margin-bottom: 0;
+    margin-left: 0;
+}
+.lblna {
+    font-size: small;
+    color: #8b8b8c;
+}
+
+.lblEnviado{
+    color: #28a745;
+}
+.lblPendiente{
+    color: #ffc107;
+}
+.lblError{
+    color: #dc3545;
+}
+.rowTotalsearch {
+    justify-content: flex-end;
+}

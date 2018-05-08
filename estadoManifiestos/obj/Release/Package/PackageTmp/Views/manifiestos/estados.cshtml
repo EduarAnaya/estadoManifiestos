@@ -1,0 +1,135 @@
+﻿@model IEnumerable<estadoManifiestos.Models.manifiesto>
+@{
+    ViewBag.Title = "estados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row rowItem">
+    <div class="row">
+        Ultima actualización <span id="date"></span>
+    </div>
+    <div class="row">
+        <div class="col" id="estData">
+        </div>
+    </div>
+</div>
+<!--Zona de tabla de estados del manifiesto-->
+<div class="row rowItem">
+    <div class="col">
+        <div class="row">
+            <h3>Actividades recientes</h3>
+        </div>
+        <div class="row">
+            <div class="col cajatabla">
+                <table id="table_id" class="display">
+                    <thead>
+                        <tr>
+                            <th>MANIFIESTO</th>
+                            <th>FECHA</th>
+                            <th>OFICINA</th>
+                            <th>Min.TRANSPORTE</th>
+                            <th>Dest. SEGURO</th>
+                            <th>OSP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var manifiesto in Model)
+                        {
+                            <tr>
+                                <td>@manifiesto.nroPlanilla</td>
+                                <td>@manifiesto.fechaGen</td>
+                                <td>@manifiesto.oficina</td>
+                                <!--****************Min. Trasporte****************-->
+                                <td>@if (manifiesto.estMinisterio == 1)
+                                    {
+                                    <span class="badge badge-pill badge-success">Enviado</span>
+                                    }
+                                    else if (manifiesto.estMinisterio == 2)
+                                    {
+                                    <span class="badge badge-pill badge-warning">Pendiente</span>
+                                    }
+                                    else if (manifiesto.estMinisterio == 3)
+                                    {
+                                    <span class="badge badge-pill badge-danger">Error</span>
+                                    }
+                                    else if (manifiesto.estDestseguro == 5)
+                                    {
+                                    <span class="badge badge-pill badge-info">Urbano</span>
+                                    }
+                                    else
+                                    {
+                                    <span>Desconocido</span>
+                                    }
+                                </td>
+                                <!--****************Dest. Seguro****************-->
+                                <td>
+                                    @{if (manifiesto.estDestseguro == 1)
+                                      {
+                                        <span class="badge badge-pill badge-success">Enviado</span>
+                                      }
+                                      else if (manifiesto.estDestseguro == 2)
+                                      {
+                                        <span class="badge badge-pill badge-warning">Pendiente</span>
+                                      }
+                                      else if (manifiesto.estDestseguro == 3)
+                                      {
+                                        <span class="badge badge-pill badge-danger">Error</span>
+                                      }
+                                      else if (manifiesto.estDestseguro == 6)
+                                      {
+                                        <span class="badge badge-pill badge-info">Propio</span>
+                                      }
+                                      else
+                                      {
+                                        <span>Desconocido</span>
+                                      }
+                                    }
+                                </td>
+                                <!--****************OSP****************-->
+                                <td>
+                                    @{if (manifiesto.estOsp == 1)
+                                      {
+                                        <span class="badge badge-pill badge-success">Enviado</span>
+                                      }
+                                      else if (manifiesto.estOsp == 2)
+                                      {
+                                        <span class="badge badge-pill badge-warning">Pendiente</span>
+                                      }
+                                      else if (manifiesto.estOsp == 3)
+                                      {
+                                        <span class="badge badge-pill badge-danger">Error</span>
+                                      }
+                                      else if (manifiesto.estOsp == 6)
+                                      {
+                                        <span class="badge badge-pill badge-info">Tercero</span>
+                                      }
+                                      else
+                                      {
+                                        <span>Desconocido</span>
+                                      }
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#table_id").DataTable();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row rowItem">
+    <div class="row">
+        <div class="col">
+            <a id="btnRefres" class="btn btn-primary btn-lg btn-block" href="/">Refrescar información</a>
+        </div>
+    </div>
+
+</div>
