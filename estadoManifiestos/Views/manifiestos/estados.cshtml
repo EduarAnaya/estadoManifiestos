@@ -3,16 +3,53 @@
     ViewBag.Title = "estados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!--Zona de busqueda indvidual-->
 <div class="row rowItem">
     <div class="row">
-        Ultima actualización <span id="date"></span>
+        Ultima actualización<span id="date"></span>
     </div>
     <div class="row">
         <div class="col" id="estData">
         </div>
     </div>
 </div>
+<div class="row rowItem">
+    <div class="col">
+        <div class="row">
+            <form id="searchManifiesto" class="form-inline fomrBuscar">
+                <div class="form-group mb-2">
+                    <label for="staticEmail2">Buscar el sigiuente manifiesto</label>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="number" class="form-control" name="manifiesto" id="inputManifiesto" placeholder="# manifiesto" required="required" />
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+
+            </form>
+
+        </div>
+        <div class="row">
+            <div id="cajatablasearch" class="col cajatabla visible">
+                <table id="tablaSearch" class="display">
+                    <thead>
+                        <tr>
+                            <th>MANIFIESTO</th>
+                            <th>FECHA</th>
+                            <th>OFICINA</th>
+                            <th>Min.TRANSPORTE</th>
+                            <th>Dest. SEGURO</th>
+                            <th>OSP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!--Zona de tabla de estados del manifiesto-->
 <div class="row rowItem">
     <div class="col">
@@ -47,23 +84,51 @@
                                 <!--****************Min. Trasporte****************-->
                                 <td>@if (manifiesto.estMinisterio == 1)
                                     {
-                                    <span class="badge badge-pill badge-success">Enviado</span>
+                                    <span class="badge badge-pill badge-success bagdEnviadoMt" data-toggle="collapse" href="@("#enMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
+                                    <div class="collapse" id="@("enMt" + manifiesto.nroPlanilla)">
+                                    </div>
                                     }
                                     else if (manifiesto.estMinisterio == 2)
                                     {
-                                    <span class="badge badge-pill badge-warning">Pendiente</span>
+                                    <span class="badge badge-pill badge-warning bagdPendienteMt"  data-toggle="collapse" href="@("#pMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
+                                    <div class="collapse" id="@("pMt" + manifiesto.nroPlanilla)">
+                                        <div class="card card-body">
+                                            <p>
+                                                Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor
+                                                <br />
+                                                <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " tarda en subir")">informar a sistemas</a>
+                                            </p>
+                                        </div>
+                                    </div>   
                                     }
                                     else if (manifiesto.estMinisterio == 3)
                                     {
-                                    <span class="badge badge-pill badge-danger">Rechazado</span>
+                                    <span class="badge badge-pill badge-danger bagdRechazadoMt" data-toggle="collapse" href="@("#rcMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
+                                    <div class="collapse" id="@("rcMt" + manifiesto.nroPlanilla)">
+                                    </div>
+                                    
                                     }
                                     else if (manifiesto.estMinisterio == 4)
                                     {
-                                    <span class="badge badge-pill badge-danger">No Catalogado</span>
+                                    <span class="badge badge-pill badge-danger bagdncMt" data-toggle="collapse" href="@("#nrMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
+                                    <div class="collapse" id="@("nrMt" + manifiesto.nroPlanilla)">
+                                        <div class="card card-body">
+                                            <p>
+                                                Error descnocido, por favor
+                                                <br />
+                                                <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " retorna error desconocido para el ministerio")">informar a sistemas</a>
+                                            </p>
+                                        </div>
+                                    </div>
                                     }
                                     else if (manifiesto.estMinisterio == 5)
                                     {
-                                    <span class="badge badge-pill badge-light">Urbano</span>
+                                    <span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="@("#naMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Urbano</span>
+                                    <div class="collapse" id="@("naMt" + manifiesto.nroPlanilla)">
+                                        <div class="card card-body">
+                                            <p>Los viajes urbanos no son reportados al Ministerio</p>
+                                        </div>
+                                    </div>
                                     }
                                     else
                                     {
@@ -74,23 +139,52 @@
                                 <td>
                                     @{if (manifiesto.estDestseguro == 1)
                                       {
-                                        <span class="badge badge-pill badge-success">Enviado</span>
+                                        <span class="badge badge-pill badge-success bagdEnviadoDs" data-toggle="collapse" href="@("#enDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
+                                        <div class="collapse" id="@("enDs" + manifiesto.nroPlanilla)">
+                                        </div>
+                                        
                                       }
                                       else if (manifiesto.estDestseguro == 2)
                                       {
-                                        <span class="badge badge-pill badge-warning">Pendiente</span>
+                                        <span class="badge badge-pill badge-warning bagdPendienteDs"  data-toggle="collapse" href="@("#pDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
+                                        <div class="collapse" id="@("pDs" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " tarda en subir")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>   
                                       }
                                       else if (manifiesto.estDestseguro == 3)
                                       {
-                                        <span class="badge badge-pill badge-danger">Rechazado</span>
+                                        <span class="badge badge-pill badge-danger bagdRechazadoDs" data-toggle="collapse" href="@("#rcDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
+                                        <div class="collapse" id="@("rcDs" + manifiesto.nroPlanilla)">
+                                        </div>
                                       }
                                       else if (manifiesto.estDestseguro == 4)
                                       {
-                                        <span class="badge badge-pill badge-danger">No Catalogado</span>
+                                        <span class="badge badge-pill badge-danger bagdncDs" data-toggle="collapse" href="@("#nrDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
+                                        <div class="collapse" id="@("nrDs" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Error descnocido, por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " retorna error desconocido para el ministerio")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                       }
                                       else if (manifiesto.estDestseguro == 6)
                                       {
-                                        <span class="badge badge-pill badge-light">Propio</span>
+                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
+                                        <div class="collapse" id="@("naDs" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>Los viajes de vehículos Propios no son reportados a Destino Seguro</p>
+                                            </div>
+                                        </div>                                      
+                                        
                                       }
                                       else
                                       {
@@ -102,23 +196,50 @@
                                 <td>
                                     @{if (manifiesto.estOsp == 1)
                                       {
-                                        <span class="badge badge-pill badge-success">Enviado</span>
+                                        <span class="badge badge-pill badge-success bagdEnviadoOsp" data-toggle="collapse" href="@("#enOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
+                                        <div class="collapse" id="@("enOsp" + manifiesto.nroPlanilla)">
+                                        </div>
                                       }
                                       else if (manifiesto.estOsp == 2)
                                       {
-                                        <span class="badge badge-pill badge-warning">Pendiente</span>
+                                        <span class="badge badge-pill badge-warning bagdPendienteOsp"  data-toggle="collapse" href="@("#pOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
+                                        <div class="collapse" id="@("pOsp" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " tarda en subir")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>   
                                       }
                                       else if (manifiesto.estOsp == 3)
                                       {
-                                        <span class="badge badge-pill badge-danger">Rechazado</span>
+                                        <span class="badge badge-pill badge-danger bagdRechazadoOsp" data-toggle="collapse" href="@("#rcOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
+                                        <div class="collapse" id="@("rcOsp" + manifiesto.nroPlanilla)">
+                                        </div>
                                       }
-                                       else if (manifiesto.estOsp == 4)
+                                      else if (manifiesto.estOsp == 4)
                                       {
-                                        <span class="badge badge-pill badge-danger">No Catalogado</span>
+                                        <span class="badge badge-pill badge-danger bagdncOsp" data-toggle="collapse" href="@("#nrOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
+                                        <div class="collapse" id="@("nrOsp" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Error descnocido, por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " retorna error desconocido para el ministerio")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>
                                       }
                                       else if (manifiesto.estOsp == 6)
-                                      {
-                                        <span class="badge badge-pill badge-light">Tercero</span>
+                                      {                                        
+                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Tercero</span>
+                                        <div class="collapse" id="@("naOsp" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>Los viajes de vehículos terceros no son reportados a OSP</p>
+                                            </div>
+                                        </div>
                                       }
                                       else
                                       {
@@ -128,11 +249,9 @@
                                 </td>
                             </tr>
                         }
-
-
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>

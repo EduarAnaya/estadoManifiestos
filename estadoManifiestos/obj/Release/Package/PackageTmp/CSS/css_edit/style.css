@@ -1,68 +1,128 @@
 
+.visible {
+    display: none;
+}
+
 .rowItem {
-    display:block;
+    display: block;
     margin-top: 20px;
 }
 
-.rowTitulo{
-  background-color: #343a40;
-  color: white;
-  border-radius: 5px 5px 0px 0px;
+.rowTitulo {
+    background-color: #343a40;
+    color: white;
+    border-radius: 5px 5px 0px 0px;
 }
+
+.fomrBuscar {
+    justify-content: flex-end;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 #estData {
     text-align: center;
 }
 
-.cajatabla{
-    overflow: auto;
+.cajatabla {
+    box-shadow: 0px 0px 1px 0px black;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
 span.badge {
     width: 100px;
     padding: inherit;
 }
+
+thead {
+    background-color: #343a40;
+    color: white;
+}
+
+table {
+    width: 100%;
+}
+
 tr {
     text-align: center;
 }
-.rowContadores{
+
+    tr.odd {
+        background-color: #e9ecef8a;
+    }
+
+    tr.even {
+        background-color: white;
+    }
+
+.rowContadores {
     display: contents;
 }
+
 .contadores {
     font-size: 3rem;
     text-align: center;
 }
-.detContador{
+
+.detContador {
     font-size: 1.5rem;
-  text-align: end;
+    text-align: end;
 }
+
 .rowTotal {
     border-top: 1px solid #d6d6d6;
 }
-.cajaTotal{
-   text-align: end;
+
+.cajaTotal {
+    text-align: end;
     margin-top: auto;
     margin-bottom: auto;
     padding: 0;
     color: #495057;
     font-size: x-large;
 }
+
 dd {
     margin-bottom: 0;
     margin-left: 0;
 }
+
 .lblna {
     font-size: small;
     color: #8b8b8c;
 }
 
-.lblEnviado{
+.lblEnviado {
     color: #28a745;
 }
-.lblPendiente{
+
+.lblPendiente {
     color: #ffc107;
 }
-.lblError{
+
+.lblError {
     color: #dc3545;
 }
+
 .rowTotalsearch {
     justify-content: flex-end;
+}
+/*info estados env*/
+.marginTituloDesc {
+    margin: 0px 5px 0px 0px;
+    padding: 0;
+    text-align: right;
+}
+
+.marginDescTtulo {
+    padding: 0;
+    text-align: left;
+    margin: 0;
+}
+
+.card.card-body {
+    padding: 0;
+    font-size: x-small;
 }

@@ -4,7 +4,6 @@ D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\EntityFramework.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\Microsoft.Web.Infrastructure.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\Newtonsoft.Json.dll
-D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\Oracle.DataAccess.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\System.Net.Http.Formatting.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\System.Web.Http.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\System.Web.Http.WebHost.dll
@@ -40,3 +39,4 @@ D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\obj\Release\estadoManifiestos.csprojResolveAssemblyReference.cache
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\obj\Release\estadoManifiestos.dll
 D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\obj\Release\estadoManifiestos.pdb
+D:\BIBLIOTECAS\DESARROLLO\DESARROLLO WEB\estadoManifiestos\estadoManifiestos\bin\Oracle.DataAccess.dll

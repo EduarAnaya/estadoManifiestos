@@ -44,10 +44,6 @@
       <HintPath>bin\logicaNegocio.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\orant\Oda11\product\11.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -134,8 +130,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbSetings\db_Crud.cs" />
-    <Compile Include="Models\dbSetings\db_Param.cs" />
+    <Compile Include="Models\estManifiesto.cs" />
     <Compile Include="Models\manifiesto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +200,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\js_edit\index.js" />
+    <Content Include="Scripts\js_edit\js_timer.Js" />
     <Content Include="Scripts\js_prov\datatables\AutoFill-2.2.2\css\autoFill.bootstrap.css" />
     <Content Include="Scripts\js_prov\datatables\AutoFill-2.2.2\css\autoFill.bootstrap.min.css" />
     <Content Include="Scripts\js_prov\datatables\AutoFill-2.2.2\css\autoFill.bootstrap4.css" />
@@ -341,6 +337,7 @@
     <Content Include="Scripts\js_prov\js_bootstrap\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js_prov\js_bootstrap\bootstrap.js" />
     <Content Include="Scripts\js_prov\js_bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\js_prov\plugTimer.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
