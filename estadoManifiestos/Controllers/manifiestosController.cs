@@ -78,7 +78,7 @@ namespace estadoManifiestos.Controllers
                 //itemManifiesto1.estDestseguro = 2;
                 //itemManifiesto1.estOsp = 6;
                 //listaManifiestos.Add(itemManifiesto1);
-                ////----------------------------------------------
+                //----------------------------------------------
                 //manifiesto itemManifiesto2 = new manifiesto();
                 //itemManifiesto2.nroPlanilla = "0094311547";
                 //itemManifiesto2.estMinisterio = 4;

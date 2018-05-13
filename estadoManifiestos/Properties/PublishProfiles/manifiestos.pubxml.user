@@ -50,7 +50,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="bin/estadoManifiestos.dll">
-      <publishTime>05/10/2018 16:14:48</publishTime>
+      <publishTime>05/11/2018 11:52:11</publishTime>
     </File>
     <File Include="bin/logicaNegocio.dll">
       <publishTime>05/10/2018 12:08:47</publishTime>
@@ -311,10 +311,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="Scripts/js_edit/index.js">
-      <publishTime>05/10/2018 16:13:47</publishTime>
+      <publishTime>05/11/2018 11:41:47</publishTime>
     </File>
     <File Include="Scripts/js_edit/js_timer.Js">
-      <publishTime>05/10/2018 09:41:30</publishTime>
+      <publishTime>05/11/2018 11:49:22</publishTime>
     </File>
     <File Include="Scripts/js_prov/datatables/AutoFill-2.2.2/css/autoFill.bootstrap.css">
       <publishTime>04/24/2018 08:42:42</publishTime>
@@ -746,7 +746,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/10/2018 09:34:51</publishTime>
     </File>
     <File Include="Views/manifiestos/estados.cshtml">
-      <publishTime>05/10/2018 15:34:27</publishTime>
+      <publishTime>05/11/2018 11:51:02</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/09/2018 10:54:30</publishTime>
@@ -761,7 +761,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/10/2018 16:15:20</publishTime>
+      <publishTime>05/11/2018 11:52:11</publishTime>
     </File>
   </ItemGroup>
 </Project>

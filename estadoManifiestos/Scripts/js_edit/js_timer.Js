@@ -9,7 +9,7 @@ $(function() {
   /*   }); */
 
 //version del codigo para contador a cero
-  var minutosRefres = 1* 60000;
+  var minutosRefres = 15* 60000;
   setTimeout(function() {
     actualizar();
     $(location).attr("href", "/");

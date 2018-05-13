@@ -12,14 +12,7 @@ $(function() {
     dia + "/" + mes + "/" + ano + "  " + hora + ":" + minutos + ":" + seg;
   $("#date").text("  " + _fecha);
   $("#btnRefres").on("click", function(e) {
-    $(this).addClass("disabled");
-
-    var estado = $(
-      '<div class="alert alert-primary" role="alert">' +
-        "<strong>Procesando consulta, por favor espere...</strong>" +
-        '</div>"'
-    );
-    $("#estData").append(estado);
+    actualizar();
   });
 
   //evento que permite mostrar un collapse y ocultar los dem�s que est�n abiertos.
@@ -30,42 +23,42 @@ $(function() {
   });
 
   /***********EVENTOS CONSULTA DE ESTADOS MIN.T************/
-  $(".bagdEnviadoMt").on("click", function(e) {
+  $("table").on("click", ".bagdEnviadoMt", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $(".bagdRechazadoMt").on("click", function(e) {
+  $("table").on("click",".bagdRechazadoMt", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS DEST.S************/
-  $(".bagdEnviadoDs").on("click", function(e) {
+  $("table").on("click",".bagdEnviadoDs", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $(".bagdRechazadoDs").on("click", function(e) {
+  $("table").on("click",".bagdRechazadoDs", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS OSP************/
-  $(".bagdEnviadoOsp").on("click", function(e) {
+  $("table").on("click",".bagdEnviadoOsp", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $(".bagdRechazadoOsp").on("click", function(e) {
+  $("table").on("click",".bagdRechazadoOsp", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
@@ -372,3 +365,12 @@ $(function() {
     }
   }
 });
+function actualizar() {
+  $("#btnRefres").addClass("disabled");
+  var estado = $(
+    '<div class="alert alert-primary" role="alert">' +
+      "<strong>Procesando consulta, por favor espere...</strong>" +
+      '</div>"'
+  );
+  $("#estData").append(estado);
+}
