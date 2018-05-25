@@ -44,6 +44,10 @@
       <HintPath>bin\logicaNegocio.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\orant\Oda11\product\11.2.0\client_1\odp.net\bin\4\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -135,6 +139,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\clear.png" />
+    <Content Include="Content\repeat.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -304,6 +310,7 @@
     <Content Include="Scripts\js_prov\datatables\datatables.css" />
     <Content Include="Scripts\js_prov\datatables\datatables.js" />
     <Content Include="Scripts\js_prov\datatables\datatables.min.js" />
+    <Content Include="Scripts\js_prov\datatables\dates.js" />
     <Content Include="Scripts\js_prov\datatables\Scroller-1.4.4\css\scroller.bootstrap.css" />
     <Content Include="Scripts\js_prov\datatables\Scroller-1.4.4\css\scroller.bootstrap.min.css" />
     <Content Include="Scripts\js_prov\datatables\Scroller-1.4.4\css\scroller.bootstrap4.css" />

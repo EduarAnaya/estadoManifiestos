@@ -13,5 +13,5 @@ $(function() {
   setTimeout(function() {
     actualizar();
     $(location).attr("href", "/");
-  }, 60000);
+  }, minutosRefres);
 });

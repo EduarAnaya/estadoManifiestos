@@ -5,37 +5,42 @@ using System.Web;
 using System.Data;
 using System.Web.Mvc;
 using estadoManifiestos.Models;
-//using estadoManifiestos.Models.dbSetings;
 using logicaNegocio;
+using System.Diagnostics;
 
 
 namespace estadoManifiestos.Controllers
 {
     public class manifiestosController : Controller
     {
-        //
-        // GET: /manifiestos/
-        logicaNegocios ln = new logicaNegocios();
+        #region libreria Externa
+        /*
+         * Instancia de la librería que maneja la conexión y tratamiento de datos
+         */
+        public logicaNegocios ln = new logicaNegocios();
+        #endregion
 
+        #region Estados General
+        /*
+         *ACCION: Retorna el estado en las diferentes entidades de los manifiestos generados en las últimas 24 horas
+         */
         [OutputCache(Duration = 60)]
         public ActionResult estados()
         {
+            Stopwatch monitor = new Stopwatch();
+            monitor.Start();
             try
             {
                 List<manifiesto> listaManifiestos = new List<manifiesto>();
-
-                //db_Crud _db_Crud = new db_Crud();
                 DataTable dt = new DataTable();
-                //dt = _db_Crud.CargarListaRecientes();
                 dt = ln.estadoRobots(1);
-
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
                     {
                         manifiesto itemManifiesto = new manifiesto();
                         itemManifiesto.nroPlanilla = row[0].ToString();
-                        itemManifiesto.fechaGen = row[1].ToString();
+                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
                         itemManifiesto.oficina = row[2].ToString();
                         try
                         {
@@ -69,37 +74,7 @@ namespace estadoManifiestos.Controllers
                         listaManifiestos.Add(itemManifiesto);
                     }
                 }
-                /*codigos de estado;1=enviado;2:pendiente;3:error;4:norequiere*/
-
-                //----------------------------------------------
-                //manifiesto itemManifiesto1 = new manifiesto();
-                //itemManifiesto1.nroPlanilla = "009455252";
-                //itemManifiesto1.estMinisterio = 3;
-                //itemManifiesto1.estDestseguro = 2;
-                //itemManifiesto1.estOsp = 6;
-                //listaManifiestos.Add(itemManifiesto1);
-                //----------------------------------------------
-                //manifiesto itemManifiesto2 = new manifiesto();
-                //itemManifiesto2.nroPlanilla = "0094311547";
-                //itemManifiesto2.estMinisterio = 4;
-                //itemManifiesto2.estDestseguro = 2;
-                //itemManifiesto2.estOsp = 1;
-                //listaManifiestos.Add(itemManifiesto2);
-                ////----------------------------------------------
-                //manifiesto itemManifiesto3 = new manifiesto();
-                //itemManifiesto3.nroPlanilla = "0094213484";
-                //itemManifiesto3.estMinisterio = 1;
-                //itemManifiesto3.estDestseguro = 1;
-                //itemManifiesto3.estOsp = 3;
-                //listaManifiestos.Add(itemManifiesto3);
-                ////----------------------------------------------
-                //manifiesto itemManifiesto4 = new manifiesto();
-                //itemManifiesto4.nroPlanilla = "0094120315";
-                //itemManifiesto4.estMinisterio = 1;
-                //itemManifiesto4.estDestseguro = 1;
-                //itemManifiesto4.estOsp = 1;
-                //listaManifiestos.Add(itemManifiesto4);
-
+                ViewBag.T_tiempo = monitor.ElapsedMilliseconds;
                 return View(listaManifiestos);
             }
             catch (Exception)
@@ -107,64 +82,77 @@ namespace estadoManifiestos.Controllers
                 return View("Error");
                 throw;
             }
-
         }
-        /*estadoministario*/
+        #endregion
+
+        #region Consulta de estados
+        /*ACCION: acción que permite consultar el estado de un manifiesto en cualquiera de las entidades a las que se le reporta
+         *ESTADOS: aplica para los estados (enviados  y rechazados)
+         *ENTIDADES: 1:mint;2:destSeguro;3:Osp
+        */
+
         [HttpPost]
-        public JsonResult estadoministerio(string planilla, int entidad)//1:mint;2:destSeguro;3:Osp
+        public JsonResult estadomManifiesto(string planilla, int entidad)
         {
             DataTable dt = new DataTable();
-            List<estManifiesto> ListaestadoMint = new List<estManifiesto>();
-
-            if (entidad == 1)
+            List<estManifiesto> ListaestadoManif = new List<estManifiesto>();
+            switch (entidad)
             {
-                dt = ln.respuestaMinisterio(planilla);
+                case 1:
+                    dt = ln.respuestaMinisterio(planilla);
+                    break;
+                case 2:
+                    dt = ln.respuestaDeseguro(planilla);
+                    break;
+                case 3:
+                    dt = ln.respuestaOsp(planilla);
+                    break;
+                default:
+                    break;
             }
-            else if (entidad == 2)
+            if (dt.Rows.Count > 0)
             {
-                dt = ln.respuestaDeseguro(planilla);
+                foreach (DataRow row in dt.Rows)
+                {
+                    estManifiesto itemEstado = new estManifiesto();
+                    string oficina = row[0].ToString();
+                    string fecha = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
+                    string idMin = row[2].ToString();
+                    string respuesta = row[3].ToString();
+                    itemEstado.oficina = oficina;
+                    itemEstado.fecha = fecha;
+                    itemEstado.idMin = idMin;
+                    itemEstado.respuesta = respuesta;
+                    ListaestadoManif.Add(itemEstado);
+                }
+                return Json(ListaestadoManif);
             }
-            else if (entidad == 3)
+            else
             {
-                dt = ln.respuestaOsp(planilla);
+                return Json(ListaestadoManif);
             }
-
-            foreach (DataRow row in dt.Rows)
-            {
-                estManifiesto itemEstado = new estManifiesto();
-                string oficina = row[0].ToString();
-                string fecha = row[1].ToString();
-                string idMin = row[2].ToString();
-                string respuesta = row[3].ToString();
-                itemEstado.oficina = oficina;
-                itemEstado.fecha = fecha;
-                itemEstado.idMin = idMin;
-                itemEstado.respuesta = respuesta;
-                ListaestadoMint.Add(itemEstado);
-            }
-            return Json(ListaestadoMint);
         }
+        #endregion
 
-
+        #region consulta por demanda
+        /*ACCION: Retorna la información del manifiesto indicado
+         * 
+         */
         [HttpPost]
         public JsonResult demanda(string planilla)//1:mint;2:destSeguro;3:Osp
         {
             try
             {
                 List<manifiesto> listaManifiestos = new List<manifiesto>();
-
-                //db_Crud _db_Crud = new db_Crud();
                 DataTable dt = new DataTable();
-                //dt = _db_Crud.CargarListaRecientes();
                 dt = ln.estadoRobots(planilla);
-
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
                     {
                         manifiesto itemManifiesto = new manifiesto();
                         itemManifiesto.nroPlanilla = row[0].ToString();
-                        itemManifiesto.fechaGen = row[1].ToString();
+                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
                         itemManifiesto.oficina = row[2].ToString();
                         try
                         {
@@ -191,15 +179,11 @@ namespace estadoManifiestos.Controllers
                         }
                         catch (Exception)
                         {
-
                             itemManifiesto.estOsp = 4;
                         }
-
                         listaManifiestos.Add(itemManifiesto);
                     }
                 }
-
-
                 return Json(listaManifiestos);
             }
             catch (Exception)
@@ -207,6 +191,7 @@ namespace estadoManifiestos.Controllers
                 return Json(0);
             }
         }
+        #endregion
 
     }
 }

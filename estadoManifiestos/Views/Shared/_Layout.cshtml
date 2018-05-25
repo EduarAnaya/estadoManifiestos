@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +16,12 @@
     <script src="~/Scripts/js_prov/jQuery/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/js_prov/js_bootstrap/bootstrap.min.js"></script>
     <script src="~/Scripts/js_prov/datatables/datatables.js"></script>
+    @*    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
+    @*    <script src="~/Scripts/js_prov/datatables/datatables.js"></script>
+    <script src="~/Scripts/js_prov/datatables/dates.js"></script>*@
+
     <script src="~/Scripts/js_prov/plugTimer.js"></script>
     <script src="~/Scripts/js_edit/js_timer.Js"></script>
     <script src="~/Scripts/js_edit/index.js"></script>
@@ -23,6 +30,6 @@
     <div class="container _ContAccion">
         @RenderBody()
     </div>
-
+    @*<script src="~/Scripts/js_prov/datatables/dates.js"></script>*@
 </body>
 </html>
