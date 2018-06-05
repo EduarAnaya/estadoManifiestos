@@ -383,7 +383,8 @@
     <Content Include="CSS\css_Prov\css_bootstrap\bootstrap.min.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\manifiestos.pubxml" />
+    <None Include="Properties\PublishProfiles\manifiestosLocal.pubxml" />
+    <None Include="Properties\PublishProfiles\manifiestosSvrWEB02.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

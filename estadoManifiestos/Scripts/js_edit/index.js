@@ -1,52 +1,52 @@
-$(function() {
-  $("#btnRefres").on("click", function(e) {
+$(function () {
+  $("#btnRefres").on("click", function (e) {
     actualizar();
   });
 
   //evento que permite mostrar un collapse y ocultar los dem�s que est�n abiertos.
-  $(".collapse").on("show.bs.collapse", function(e) {
+  $(".collapse").on("show.bs.collapse", function (e) {
     var dataID = e.target.id;
     $(".collapse").collapse("hide");
     $(dataID).collapse();
   });
 
   /***********EVENTOS CONSULTA DE ESTADOS MIN.T************/
-  $("table").on("click", ".bagdEnviadoMt", function(e) {
+  $("table").on("click", ".bagdEnviadoMt", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoMt", function(e) {
+  $("table").on("click", ".bagdRechazadoMt", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS DEST.S************/
-  $("table").on("click", ".bagdEnviadoDs", function(e) {
+  $("table").on("click", ".bagdEnviadoDs", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoDs", function(e) {
+  $("table").on("click", ".bagdRechazadoDs", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS OSP************/
-  $("table").on("click", ".bagdEnviadoOsp", function(e) {
+  $("table").on("click", ".bagdEnviadoOsp", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoOsp", function(e) {
+  $("table").on("click", ".bagdRechazadoOsp", function (e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
@@ -55,13 +55,13 @@ $(function() {
   /***********EVENTOS CONSULTA DE ESTADOS************/
   function ejecutaPost(manifiesto, entidad, $elemento) {
     $.post("/manifiestos/estadomManifiesto", {
-      planilla: manifiesto,
-      entidad: entidad
-    })
-      .done(function(response) {
+        planilla: manifiesto,
+        entidad: entidad
+      })
+      .done(function (response) {
         renderRespuesta(response, $elemento);
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   }
@@ -69,43 +69,43 @@ $(function() {
   function renderRespuesta(response, $elemento) {
     var $coll = $elemento;
     var resultado = null;
-    if (response["0"].idMin == "") {//rechazado
+    if (response["0"].idMin == "") { //rechazado
       resultado = $(
         '<div class="card card-body">' +
-          '<dl class="row" style="margin: 0;">' +
-          '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].oficina +
-          "</dd>" +
-          '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].fecha +
-          "</dd>" +
-          '<dt class="col-5 marginTituloDesc">Respuesta. Prov.</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].respuesta +
-          "</dd>" +
-          "</dl>" +
-          "</div>"
+        '<dl class="row" style="margin: 0;">' +
+        '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].oficina +
+        "</dd>" +
+        '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].fecha +
+        "</dd>" +
+        '<dt class="col-5 marginTituloDesc">Respuesta. Prov.</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].respuesta +
+        "</dd>" +
+        "</dl>" +
+        "</div>"
       );
-    }else{
+    } else {
       resultado = $(
         '<div class="card card-body">' +
-          '<dl class="row" style="margin: 0;">' +
-          '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].oficina +
-          "</dd>" +
-          '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].fecha +
-          "</dd>" +
-          '<dt class="col-5 marginTituloDesc">Nro. Aprov.</dt>' +
-          '<dd class="col-5 marginDescTtulo">' +
-          response["0"].idMin +
-          "</dd>" +
-          "</dl>" +
-          "</div>"
+        '<dl class="row" style="margin: 0;">' +
+        '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].oficina +
+        "</dd>" +
+        '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].fecha +
+        "</dd>" +
+        '<dt class="col-5 marginTituloDesc">Nro. Aprov.</dt>' +
+        '<dd class="col-5 marginDescTtulo">' +
+        response["0"].idMin +
+        "</dd>" +
+        "</dl>" +
+        "</div>"
       );
     }
 
@@ -114,7 +114,7 @@ $(function() {
   }
   /*busqueda por demanda*/
   let _ultimaPlanilla = null;
-  $("#searchManifiesto").on("submit", function(e) {
+  $("#searchManifiesto").on("submit", function (e) {
     e.preventDefault();
     var manifiesto = $("#inputManifiesto")
       .val()
@@ -124,11 +124,11 @@ $(function() {
     postDemanda(manifiesto);
   });
 
-  $("#repeatSearch").on("click", function(e) {
+  $("#repeatSearch").on("click", function (e) {
     postDemanda(_ultimaPlanilla);
   });
 
-  $("#clearSearch").on("click", function() {
+  $("#clearSearch").on("click", function () {
     _ultimaPlanilla = null;
     $("#tablaSearch tbody").html("");
     $("#cajatablasearch").addClass("visible");
@@ -136,12 +136,12 @@ $(function() {
 
   function postDemanda(manifiesto) {
     $.post("/manifiestos/demanda", {
-      planilla: manifiesto
-    })
-      .done(function(response) {
+        planilla: manifiesto
+      })
+      .done(function (response) {
         renderTable(response);
       })
-      .fail(function() {
+      .fail(function () {
         alert("error");
       });
   }
@@ -230,6 +230,19 @@ $(function() {
               '">' +
               '<div class="card card-body">' +
               "<p>Los viajes urbanos no son reportados al Ministerio</p>" +
+              "</div>" +
+              "</div>";
+            break;
+          case 6: //propio
+            tdMint =
+              '<span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="#prMt' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">Propio</span>' +
+              '<div class="collapse" id="prMt' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Los viajes de vehículos propios que son despachados por otra empresa de transporte no se reportan al ministerio.</p>" +
               "</div>" +
               "</div>";
             break;
@@ -360,25 +373,25 @@ $(function() {
 
         var tr = $(
           "<tr>" +
-            "<td>" +
-            _registro.nroPlanilla +
-            "</td>" +
-            "<td>" +
-            _registro.fechaGen +
-            "</td>" +
-            "<td>" +
-            _registro.oficina +
-            "</td>" +
-            "<td>" +
-            tdMint +
-            "</td>" +
-            "<td>" +
-            tdDsts +
-            "</td>" +
-            "<td>" +
-            tdOsp +
-            "</td>" +
-            "</tr>"
+          "<td>" +
+          _registro.nroPlanilla +
+          "</td>" +
+          "<td>" +
+          _registro.fechaGen +
+          "</td>" +
+          "<td>" +
+          _registro.oficina +
+          "</td>" +
+          "<td>" +
+          tdMint +
+          "</td>" +
+          "<td>" +
+          tdDsts +
+          "</td>" +
+          "<td>" +
+          tdOsp +
+          "</td>" +
+          "</tr>"
         );
       }
       $destino.html("");
@@ -394,8 +407,8 @@ function actualizar() {
   $("#btnRefres").addClass("disabled");
   var estado = $(
     '<div class="alert alert-primary" role="alert">' +
-      "<strong>Procesando consulta, por favor espere...</strong>" +
-      '</div>"'
+    "<strong>Procesando consulta, por favor espere...</strong>" +
+    '</div>"'
   );
   $("#estData").append(estado);
 }

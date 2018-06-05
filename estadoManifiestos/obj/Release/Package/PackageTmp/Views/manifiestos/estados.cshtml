@@ -5,10 +5,10 @@
 }
 <!--Zona de busqueda indvidual-->
 <div class="row rowItem">
-@*    @ViewBag.T_tiempo*@
+    @*    @ViewBag.T_tiempo*@
     <div class="row">
         Ultima actualización<span id="date">&nbsp<strong>@DateTime.Now</strong></span>
-        
+
     </div>
     <div class="row">
         <div class="col" id="estData">
@@ -137,6 +137,15 @@
                                             </div>
                                         </div>
                                             break;
+
+                                        case 6:
+                                        <span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="@("#naMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
+                                        <div class="collapse" id="@("prMt" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>Los viajes de vehículos propios que son despachados por otra empresa de transporte no se reportan al ministerio.</p>
+                                            </div>
+                                        </div>
+                                            break;
                                         default:
                                         <span>Desconocido</span>
                                             break;
@@ -261,5 +270,6 @@
             <a id="btnRefres" class="btn btn-primary btn-lg btn-block" href="/">Refrescar información</a>
         </div>
     </div>
-
+    <label style="font-size: 0.6rem;">
+        Fecha de pulicación: 05/06/2018</label>
 </div>
