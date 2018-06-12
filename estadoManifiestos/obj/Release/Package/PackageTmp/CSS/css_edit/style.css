@@ -1,3 +1,29 @@
+body {
+    margin-top: 4rem;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+footer {
+    height: 3rem;
+    color: black;
+}
+
+.barras {
+    background-color: #8c8c8c;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+a.navbar-brand.titulo {
+    color: black;
+}
+
+.btn-secondary {
+    background-color: #8c8c8c;
+}
+
+.container._ContAccion {
+    margin-bottom: 5rem;
+}
 
 .visible {
     display: none;
@@ -6,6 +32,7 @@
 .rowItem {
     display: block;
     margin-top: 20px;
+    border-bottom: solid 1px #cecece;
 }
 
 .rowTitulo {
@@ -16,9 +43,13 @@
 
 .fomrBuscar {
     justify-content: flex-end;
-    background-color: #e9ecef;
     padding: 10px;
     border-radius: 5px;
+}
+
+#lbldate {
+    position: absolute;
+    right: 0;
 }
 
 #estData {
@@ -26,18 +57,18 @@
 }
 
 .cajatabla {
-    box-shadow: 0px 0px 1px 0px black;
+    box-shadow: 0px 1px 1px 0px #8d8d8d;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-radius: 5px;
 }
 
 span.badge {
     width: 100px;
-    padding: inherit;
 }
 
 thead {
-    background-color: #343a40;
+    background-color: #8c8c8c;
     color: white;
 }
 

@@ -50,10 +50,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="bin/estadoManifiestos.dll">
-      <publishTime>05/25/2018 11:30:34</publishTime>
+      <publishTime>06/12/2018 17:33:58</publishTime>
     </File>
     <File Include="bin/logicaNegocio.dll">
-      <publishTime>05/22/2018 16:17:22</publishTime>
+      <publishTime>06/05/2018 11:59:32</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
@@ -99,6 +99,15 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     </File>
     <File Include="Content/clear.png">
       <publishTime>05/15/2018 12:24:44</publishTime>
+    </File>
+    <File Include="Content/logo_icon.png">
+      <publishTime>06/12/2018 12:09:25</publishTime>
+    </File>
+    <File Include="Content/logo_report.png">
+      <publishTime>06/12/2018 12:09:01</publishTime>
+    </File>
+    <File Include="Content/Logo_transer.png">
+      <publishTime>06/12/2018 14:42:01</publishTime>
     </File>
     <File Include="Content/repeat.png">
       <publishTime>05/16/2018 17:13:04</publishTime>
@@ -269,7 +278,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:41</publishTime>
     </File>
     <File Include="CSS/css_edit/style.css">
-      <publishTime>05/17/2018 18:11:34</publishTime>
+      <publishTime>06/12/2018 17:25:39</publishTime>
     </File>
     <File Include="CSS/css_Prov/css_bootstrap/bootstrap-grid.css">
       <publishTime>04/09/2018 10:58:28</publishTime>
@@ -317,7 +326,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="Scripts/js_edit/index.js">
-      <publishTime>05/21/2018 10:20:22</publishTime>
+      <publishTime>06/06/2018 15:59:18</publishTime>
     </File>
     <File Include="Scripts/js_edit/js_timer.Js">
       <publishTime>05/15/2018 10:18:27</publishTime>
@@ -755,7 +764,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/10/2018 09:34:51</publishTime>
     </File>
     <File Include="Views/manifiestos/estados.cshtml">
-      <publishTime>05/25/2018 11:30:25</publishTime>
+      <publishTime>06/12/2018 17:34:47</publishTime>
     </File>
     <File Include="Views/manifiestos/Index.cshtml">
       <publishTime>05/18/2018 08:51:01</publishTime>
@@ -764,7 +773,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/09/2018 10:54:30</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/16/2018 12:48:00</publishTime>
+      <publishTime>06/12/2018 17:25:42</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/07/2018 12:16:38</publishTime>
@@ -773,7 +782,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/25/2018 14:40:04</publishTime>
+      <publishTime>06/12/2018 17:34:51</publishTime>
     </File>
   </ItemGroup>
 </Project>

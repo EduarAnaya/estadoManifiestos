@@ -140,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\clear.png" />
+    <Content Include="Content\logo_icon.png" />
+    <Content Include="Content\logo_report.png" />
+    <Content Include="Content\Logo_transer.png" />
     <Content Include="Content\repeat.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -204,7 +207,6 @@
     <Content Include="CSS\css_Prov\css_bootstrap\bootstrap.min.css" />
     <Content Include="CSS\css_Prov\datatables\datatables.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\js_edit\index.js" />
     <Content Include="Scripts\js_edit\js_timer.Js" />
     <Content Include="Scripts\js_prov\datatables\AutoFill-2.2.2\css\autoFill.bootstrap.css" />

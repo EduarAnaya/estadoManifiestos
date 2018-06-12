@@ -1,20 +1,9 @@
 ﻿@model IEnumerable<estadoManifiestos.Models.manifiesto>
 @{
-    ViewBag.Title = "estados";
+    ViewBag.Title = "Estados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!--Zona de busqueda indvidual-->
-<div class="row rowItem">
-    @*    @ViewBag.T_tiempo*@
-    <div class="row">
-        Ultima actualización<span id="date">&nbsp<strong>@DateTime.Now</strong></span>
-
-    </div>
-    <div class="row">
-        <div class="col" id="estData">
-        </div>
-    </div>
-</div>
+<!--Resultados de Zona de bsqueda-->
 <div class="row rowItem">
     <div class="col">
         <div class="row">
@@ -25,10 +14,8 @@
                 <div class="form-group mx-sm-3 mb-2">
                     <input type="text" class="form-control" name="manifiesto" id="inputManifiesto" placeholder="# manifiesto" required="required" maxlength="10" />
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Buscar</button>
-
+                <button type="submit" class="btn btn-secondary mb-2">Buscar</button>
             </form>
-
         </div>
         <div class="row">
             <div id="cajatablasearch" class="col cajatabla visible">
@@ -55,20 +42,21 @@
         </div>
     </div>
 </div>
-
-
 <!--Zona de tabla de estados del manifiesto-->
 <div class="row rowItem">
     <div class="col">
         <div class="row">
             <h3>Actividades recientes</h3>
+            <h5 id="lbldate">Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
         </div>
         <div class="row">
             <div class="col cajatabla">
                 <script type="text/javascript">
                     $(function () {
                         $('#table_id').DataTable({
-                            "order": [[1, "desc"]]
+                            "order": [[1, "desc"]],
+                            "scrollY": "30rem",
+                            "scrollCollapse": true
                         });
                     });
                 </script>
@@ -263,13 +251,13 @@
         </div>
     </div>
 </div>
-
+<!--Ultima actualización-->
+<div class="row">
+</div>
 <div class="row rowItem">
     <div class="row">
         <div class="col">
-            <a id="btnRefres" class="btn btn-primary btn-lg btn-block" href="/">Refrescar información</a>
+            <a id="btnRefres" class="btn btn-secondary btn-lg btn-block" href="/">Refrescar información</a>
         </div>
     </div>
-    <label style="font-size: 0.6rem;">
-        Fecha de pulicación: 05/06/2018</label>
 </div>

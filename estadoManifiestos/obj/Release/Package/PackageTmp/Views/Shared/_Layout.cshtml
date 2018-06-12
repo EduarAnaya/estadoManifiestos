@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="estado de manifiestos">
     <meta name="author" content="Eduar Anaya">
+    <link rel="shortcut icon" href="~/Content/logo_icon.png" />
     <title>@ViewBag.title</title>
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
     <link href="~/CSS/css_Prov/css_bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/Scripts/js_prov/datatables/datatables.css" rel="stylesheet" />
     <link href="~/CSS/css_edit/style.css" rel="stylesheet" />
@@ -16,20 +18,39 @@
     <script src="~/Scripts/js_prov/jQuery/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/js_prov/js_bootstrap/bootstrap.min.js"></script>
     <script src="~/Scripts/js_prov/datatables/datatables.js"></script>
-    @*    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
-    @*    <script src="~/Scripts/js_prov/datatables/datatables.js"></script>
-    <script src="~/Scripts/js_prov/datatables/dates.js"></script>*@
+
 
     <script src="~/Scripts/js_prov/plugTimer.js"></script>
     <script src="~/Scripts/js_edit/js_timer.Js"></script>
     <script src="~/Scripts/js_edit/index.js"></script>
 
 
+    <!-- Navegacion -->
+    <nav id="barraMenu" class="navbar barras navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand titulo" href="@Url.Action("estados", "manifiestos")">
+                <img src="~/Content/Logo_transer.png" style="width: 6rem" alt="Inicio" />
+            </a>
+            <h4>Reporte Manifiestos</h4>
+        </div>
+    </nav>
+
     <div class="container _ContAccion">
         @RenderBody()
     </div>
-    @*<script src="~/Scripts/js_prov/datatables/dates.js"></script>*@
+
+
+    <footer class="fixed-bottom barras" style="margin-top: 20px;">
+        <div class="container" style="font-size: 0.8rem;">
+            <div class="row">
+                <div class="col" style="display: flex">
+                    <span style="margin: auto;">&copy Transer S.A. @DateTime.Now.Year</span><br />
+                </div>
+            </div>
+
+        </div>
+    </footer>
 </body>
 </html>
