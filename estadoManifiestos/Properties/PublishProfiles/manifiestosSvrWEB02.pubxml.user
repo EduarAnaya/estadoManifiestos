@@ -50,7 +50,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="bin/estadoManifiestos.dll">
-      <publishTime>06/12/2018 17:40:21</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="bin/logicaNegocio.dll">
       <publishTime>06/05/2018 11:59:32</publishTime>
@@ -101,13 +101,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/15/2018 12:24:44</publishTime>
     </File>
     <File Include="Content/logo_icon.png">
-      <publishTime>06/12/2018 12:09:25</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/logo_report.png">
-      <publishTime>06/12/2018 12:09:01</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/Logo_transer.png">
-      <publishTime>06/12/2018 14:42:01</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/repeat.png">
       <publishTime>05/16/2018 17:13:04</publishTime>
@@ -278,7 +278,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:41</publishTime>
     </File>
     <File Include="CSS/css_edit/style.css">
-      <publishTime>06/12/2018 17:25:39</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="CSS/css_Prov/css_bootstrap/bootstrap-grid.css">
       <publishTime>04/09/2018 10:58:28</publishTime>
@@ -764,13 +764,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/10/2018 09:34:51</publishTime>
     </File>
     <File Include="Views/manifiestos/estados.cshtml">
-      <publishTime>06/12/2018 17:34:47</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>05/09/2018 10:54:30</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/12/2018 17:25:42</publishTime>
+      <publishTime>06/12/2018 18:10:23</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/07/2018 12:16:38</publishTime>
@@ -779,7 +779,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/12/2018 17:40:21</publishTime>
+      <publishTime>06/12/2018 18:10:29</publishTime>
     </File>
   </ItemGroup>
 </Project>
