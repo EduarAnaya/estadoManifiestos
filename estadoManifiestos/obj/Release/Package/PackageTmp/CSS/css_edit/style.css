@@ -161,3 +161,16 @@ dd {
 .collapse {
     width: 180px;
 }
+
+.desCantidad {
+    text-align: center;
+}
+
+.container.contTitulo {
+    max-width: none !important;
+    width: 80%;
+}
+
+.row.rowResumen {
+    text-align: end;
+}

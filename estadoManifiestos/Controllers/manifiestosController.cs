@@ -34,6 +34,9 @@ namespace estadoManifiestos.Controllers
                 List<manifiesto> listaManifiestos = new List<manifiesto>();
                 DataTable dt = new DataTable();
                 dt = ln.estadoRobots(1);
+                int enviados = 0;
+                int pendientes = 0;
+                int error = 0;
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
@@ -45,6 +48,18 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estMinisterio = int.Parse(row[3].ToString());
+                            switch (itemManifiesto.estMinisterio)
+                            {
+                                case 1:
+                                    enviados++;
+                                    break;
+                                case 2:
+                                    pendientes++;
+                                    break;
+                                case 3:
+                                    error++;
+                                    break;
+                            }
                         }
                         catch (Exception)
                         {
@@ -54,6 +69,20 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estDestseguro = int.Parse(row[4].ToString());
+                            switch (itemManifiesto.estDestseguro)
+                            {
+                                case 1:
+                                    enviados++;
+                                    break;
+                                case 2:
+                                    pendientes++;
+                                    break;
+                                case 3:
+                                    error++;
+                                    break;
+                            }
+
+
                         }
                         catch (Exception)
                         {
@@ -64,6 +93,18 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estOsp = int.Parse(row[5].ToString());
+                            switch (itemManifiesto.estOsp)
+                            {
+                                case 1:
+                                    enviados++;
+                                    break;
+                                case 2:
+                                    pendientes++;
+                                    break;
+                                case 3:
+                                    error++;
+                                    break;
+                            }
                         }
                         catch (Exception)
                         {
@@ -74,6 +115,9 @@ namespace estadoManifiestos.Controllers
                         listaManifiestos.Add(itemManifiesto);
                     }
                 }
+                ViewBag.mEnviados = enviados;
+                ViewBag.mPendientes = pendientes;
+                ViewBag.mError = error;
                 ViewBag.T_tiempo = monitor.ElapsedMilliseconds;
                 return View(listaManifiestos);
             }

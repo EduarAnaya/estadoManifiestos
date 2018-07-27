@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
     <link href="~/CSS/css_Prov/css_bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/Scripts/js_prov/datatables/datatables.css" rel="stylesheet" />
-    <link href="~/CSS/css_edit/style.css?v1.4" rel="stylesheet" />
+    <link href="~/CSS/css_edit/style.css?v2.7" rel="stylesheet" />
 
 
 </head>
 <body>
     <script src="~/Scripts/js_prov/jQuery/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/js_prov/js_bootstrap/bootstrap.min.js"></script>
-    <script src="~/Scripts/js_prov/datatables/datatables.js"></script>
+    <script src="~/Scripts/js_prov/datatables/datatables.js?v2.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
 
@@ -29,12 +29,80 @@
 
     <!-- Navegacion -->
     <nav id="barraMenu" class="navbar barras navbar-expand-lg fixed-top">
-        <div class="container">
+        <div class="row" style="display: contents;">
+            <div class="col-xl-7 col-lg-6 col-md-5 col-sm-12">
+                <h4>
+                    <a class="navbar-brand titulo" href="@Url.Action("estados", "manifiestos")">
+                        <img src="~/Content/Logo_transer.png" style="width: 6rem" alt="Inicio" />
+                    </a>
+                    Reporte Manifiestos
+                </h4>
+            </div>
+            <div class="col">
+                <div class="row rowResumen">
+                    <div class="col">
+                        <div>
+                            <h6>ENVIADOS</h6>
+                        </div>
+                        <div>
+                            <span class="badge badge-success desCantidad">@ViewBag.mEnviados</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h6>PENDIENTES</h6>
+                        </div>
+                        <div>
+                            <span class="badge badge-warning desCantidad">@ViewBag.mPendientes</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h6>RECHAZADOS</h6>
+                        </div>
+                        <div>
+                            <span class="badge badge-danger desCantidad">@ViewBag.mError</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        @*        <div class="container contTitulo">
             <a class="navbar-brand titulo" href="@Url.Action("estados", "manifiestos")">
                 <img src="~/Content/Logo_transer.png" style="width: 6rem" alt="Inicio" />
             </a>
             <h4>Reporte Manifiestos</h4>
-        </div>
+        </div>*@
+        @* <div class="row rowResumen">
+            <div class="col">
+                <div>
+                    <h6>ENVIADOS</h6>
+                </div>
+                <div>
+                    <span class="badge badge-success desCantidad">@ViewBag.mEnviados</span>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <h6>PENDIENTES</h6>
+                </div>
+                <div>
+                    <span class="badge badge-warning desCantidad">@ViewBag.mPendientes</span>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <h6>RECHAZADOS</h6>
+                </div>
+                <div>
+                    <span class="badge badge-danger desCantidad">@ViewBag.mError</span>
+                </div>
+            </div>
+        </div>*@
     </nav>
 
     <div class="container _ContAccion">

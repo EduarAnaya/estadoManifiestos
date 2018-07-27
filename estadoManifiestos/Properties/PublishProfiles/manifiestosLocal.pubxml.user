@@ -50,10 +50,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
     <File Include="bin/estadoManifiestos.dll">
-      <publishTime>06/12/2018 17:33:58</publishTime>
+      <publishTime>07/06/2018 09:35:02</publishTime>
     </File>
     <File Include="bin/logicaNegocio.dll">
       <publishTime>06/05/2018 11:59:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CSharp.dll">
+      <publishTime>07/09/2012 00:40:08</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
@@ -64,8 +67,56 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/Oracle.DataAccess.dll">
       <publishTime>08/31/2012 06:26:22</publishTime>
     </File>
+    <File Include="bin/System.ComponentModel.DataAnnotations.dll">
+      <publishTime>07/09/2012 00:40:08</publishTime>
+    </File>
+    <File Include="bin/System.Configuration.dll">
+      <publishTime>07/09/2012 00:40:08</publishTime>
+    </File>
+    <File Include="bin/System.Data.DataSetExtensions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Data.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Data.Entity.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Drawing.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.EnterpriseServices.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.WebRequest.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Abstractions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.ApplicationServices.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.DynamicData.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Entity.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Extensions.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
@@ -85,6 +136,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/System.Web.Razor.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
     </File>
+    <File Include="bin/System.Web.Routing.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Services.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
     </File>
@@ -94,6 +151,12 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
     <File Include="bin/System.Web.WebPages.Razor.dll">
       <publishTime>05/07/2018 12:16:42</publishTime>
     </File>
+    <File Include="bin/System.Xml.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
+    <File Include="bin/System.Xml.Linq.dll">
+      <publishTime>07/09/2012 00:40:10</publishTime>
+    </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/07/2018 12:16:43</publishTime>
     </File>
@@ -101,13 +164,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/15/2018 12:24:44</publishTime>
     </File>
     <File Include="Content/logo_icon.png">
-      <publishTime>06/12/2018 12:09:25</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/logo_report.png">
-      <publishTime>06/12/2018 12:09:01</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/Logo_transer.png">
-      <publishTime>06/12/2018 14:42:01</publishTime>
+      <publishTime>06/12/2018 18:08:54</publishTime>
     </File>
     <File Include="Content/repeat.png">
       <publishTime>05/16/2018 17:13:04</publishTime>
@@ -278,7 +341,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:41</publishTime>
     </File>
     <File Include="CSS/css_edit/style.css">
-      <publishTime>06/12/2018 17:25:39</publishTime>
+      <publishTime>07/05/2018 17:56:58</publishTime>
     </File>
     <File Include="CSS/css_Prov/css_bootstrap/bootstrap-grid.css">
       <publishTime>04/09/2018 10:58:28</publishTime>
@@ -764,16 +827,16 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/10/2018 09:34:51</publishTime>
     </File>
     <File Include="Views/manifiestos/estados.cshtml">
-      <publishTime>06/12/2018 17:34:47</publishTime>
+      <publishTime>07/05/2018 17:45:34</publishTime>
     </File>
     <File Include="Views/manifiestos/Index.cshtml">
       <publishTime>05/18/2018 08:51:01</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>05/09/2018 10:54:30</publishTime>
+      <publishTime>06/22/2018 12:22:10</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/12/2018 17:25:42</publishTime>
+      <publishTime>07/06/2018 09:33:40</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/07/2018 12:16:38</publishTime>
@@ -782,7 +845,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/07/2018 12:16:38</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/12/2018 17:34:51</publishTime>
+      <publishTime>07/06/2018 09:45:23</publishTime>
     </File>
   </ItemGroup>
 </Project>

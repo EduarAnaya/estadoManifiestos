@@ -3,6 +3,7 @@
     ViewBag.Title = "Estados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <!--Resultados de Zona de bsqueda-->
 <div class="row rowItem">
     <div class="col">
@@ -41,10 +42,12 @@
             </div>
         </div>
     </div>
+
 </div>
 <!--Zona de tabla de estados del manifiesto-->
 <div class="row rowItem">
     <div class="col">
+        <div class="row"></div>
         <div class="row">
             <h3>Actividades recientes</h3>
             <h5 id="lbldate">Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
@@ -251,9 +254,7 @@
         </div>
     </div>
 </div>
-<!--Ultima actualización-->
-<div class="row">
-</div>
+
 <div class="row rowItem">
     <div class="row">
         <div class="col">
@@ -261,3 +262,4 @@
         </div>
     </div>
 </div>
+
