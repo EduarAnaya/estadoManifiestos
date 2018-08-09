@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using estadoManifiestos.Models;
 using logicaNegocio;
 using System.Diagnostics;
+using Oracle.DataAccess.Client;
 
 
 namespace estadoManifiestos.Controllers
@@ -24,7 +25,7 @@ namespace estadoManifiestos.Controllers
         /*
          *ACCION: Retorna el estado en las diferentes entidades de los manifiestos generados en las últimas 24 horas
          */
-        [OutputCache(Duration = 60)]
+        //[OutputCache(Duration = 60)]
         public ActionResult estados()
         {
             Stopwatch monitor = new Stopwatch();
@@ -42,12 +43,12 @@ namespace estadoManifiestos.Controllers
                     foreach (DataRow row in dt.Rows)
                     {
                         manifiesto itemManifiesto = new manifiesto();
-                        itemManifiesto.nroPlanilla = row[0].ToString();
-                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
-                        itemManifiesto.oficina = row[2].ToString();
+                        itemManifiesto.nroPlanilla = row["Planilla"].ToString();
+                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row["Fecha"].ToString()));
+                        itemManifiesto.oficina = row["Oficina"].ToString();
                         try
                         {
-                            itemManifiesto.estMinisterio = row[3].ToString();
+                            itemManifiesto.estMinisterio = row["Ministerio"].ToString();
                             switch (itemManifiesto.estMinisterio)
                             {
                                 case "E"://ENVIADO
@@ -59,20 +60,21 @@ namespace estadoManifiestos.Controllers
                                 case "R"://RECHAZADO
                                     error++;
                                     break;
+                                case ""://RECHAZADO
+                                    itemManifiesto.estMinisterio = "NC";//NO CATALOGADO
+                                    break;
                                 default:
                                     itemManifiesto.estMinisterio = "NA";//NO APLICA
                                     break;
-
                             }
                         }
                         catch (Exception)
                         {
-
                             itemManifiesto.estMinisterio = "NC";
                         }
                         try
                         {
-                            itemManifiesto.estDestseguro = row[4].ToString();
+                            itemManifiesto.estDestseguro = row["Deseguro"].ToString();
                             switch (itemManifiesto.estDestseguro)
                             {
                                 case "E":
@@ -84,21 +86,22 @@ namespace estadoManifiestos.Controllers
                                 case "R":
                                     error++;
                                     break;
+                                case ""://RECHAZADO
+                                    itemManifiesto.estDestseguro = "NC";//NO CATALOGADO
+                                    break;
                                 default:
                                     itemManifiesto.estDestseguro = "NA";
                                     break;
                             }
-
                         }
                         catch (Exception)
                         {
-
                             itemManifiesto.estDestseguro = "NC";
                         }
 
                         try
                         {
-                            itemManifiesto.estOsp = row[5].ToString();
+                            itemManifiesto.estOsp = row["Osp"].ToString();
                             switch (itemManifiesto.estOsp)
                             {
                                 case "E":
@@ -110,6 +113,9 @@ namespace estadoManifiestos.Controllers
                                 case "R":
                                     error++;
                                     break;
+                                case ""://RECHAZADO
+                                    itemManifiesto.estOsp = "NC";//NO CATALOGADO
+                                    break;
                                 default:
                                     itemManifiesto.estOsp = "NA";
                                     break;
@@ -117,10 +123,35 @@ namespace estadoManifiestos.Controllers
                         }
                         catch (Exception)
                         {
-
                             itemManifiesto.estOsp = "NC";
                         }
 
+                        try
+                        {
+                            itemManifiesto.estBavaria = row["Bavaria"].ToString();
+                            switch (itemManifiesto.estBavaria)
+                            {
+                                case "E":
+                                    enviados++;
+                                    break;
+                                case "P":
+                                    pendientes++;
+                                    break;
+                                case "R":
+                                    error++;
+                                    break;
+                                case ""://RECHAZADO
+                                    itemManifiesto.estBavaria = "NC";//NO CATALOGADO
+                                    break;
+                                default:
+                                    itemManifiesto.estBavaria = "NA";
+                                    break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            itemManifiesto.estBavaria = "NC";
+                        }
                         listaManifiestos.Add(itemManifiesto);
                     }
                 }
@@ -130,10 +161,10 @@ namespace estadoManifiestos.Controllers
                 ViewBag.T_tiempo = monitor.ElapsedMilliseconds;
                 return View(listaManifiestos);
             }
-            catch (Exception)
+            catch (Exception Ex)
             {
+                ModelState.AddModelError("ErrorLoad", Ex.Message);
                 return View("Error");
-                throw;
             }
         }
         #endregion
@@ -145,45 +176,62 @@ namespace estadoManifiestos.Controllers
         */
 
         [HttpPost]
-        public JsonResult estadomManifiesto(string planilla, int entidad)
+        public JsonResult estadomManifiesto(string planilla, int entidad)//1:mint;2:destSeguro;3:Osp;4:Bavaria
         {
             DataTable dt = new DataTable();
             List<estManifiesto> ListaestadoManif = new List<estManifiesto>();
-            switch (entidad)
+            try
             {
-                case 1:
-                    dt = ln.respuestaMinisterio(planilla);
-                    break;
-                case 2:
-                    dt = ln.respuestaDeseguro(planilla);
-                    break;
-                case 3:
-                    dt = ln.respuestaOsp(planilla);
-                    break;
-                default:
-                    break;
-            }
-            if (dt.Rows.Count > 0)
-            {
-                foreach (DataRow row in dt.Rows)
+                switch (entidad)
                 {
-                    estManifiesto itemEstado = new estManifiesto();
-                    string oficina = row[0].ToString();
-                    string fecha = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
-                    string idMin = row[2].ToString();
-                    string respuesta = row[3].ToString();
-                    itemEstado.oficina = oficina;
-                    itemEstado.fecha = fecha;
-                    itemEstado.idMin = idMin;
-                    itemEstado.respuesta = respuesta;
-                    ListaestadoManif.Add(itemEstado);
+                    case 1:
+                        dt = ln.respuestaMinisterio(planilla);
+                        break;
+                    case 2:
+                        dt = ln.respuestaDeseguro(planilla);
+                        break;
+                    case 3:
+                        dt = ln.respuestaOsp(planilla);
+                        break;
+                    case 4:
+                        dt = ln.respuestaBavaria(planilla);
+                        break;
+                    default:
+                        break;
+                }
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        estManifiesto itemEstado = new estManifiesto();
+                        string oficina = row[0].ToString();
+                        string fecha = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
+                        string idMin = row[2].ToString();
+                        string respuesta = row[3].ToString();
+                        itemEstado.oficina = oficina;
+                        itemEstado.fecha = fecha;
+                        itemEstado.idMin = idMin;
+                        itemEstado.respuesta = respuesta;
+                        ListaestadoManif.Add(itemEstado);
+                    }
+
                 }
                 return Json(ListaestadoManif);
+
             }
-            else
+            catch (OracleException oraEx)
             {
-                return Json(ListaestadoManif);
+                Response.StatusCode = 500;
+                return Json(Response.StatusDescription = oraEx.Message);
             }
+
+            catch (Exception Ex)
+            {
+                Response.StatusCode = 500;
+                return Json(Response.StatusDescription = Ex.Message);
+            }
+
+
         }
         #endregion
 
@@ -192,7 +240,7 @@ namespace estadoManifiestos.Controllers
          * 
          */
         [HttpPost]
-        public JsonResult demanda(string planilla)//1:mint;2:destSeguro;3:Osp
+        public JsonResult demanda(string planilla)
         {
             try
             {
@@ -204,12 +252,12 @@ namespace estadoManifiestos.Controllers
                     foreach (DataRow row in dt.Rows)
                     {
                         manifiesto itemManifiesto = new manifiesto();
-                        itemManifiesto.nroPlanilla = row[0].ToString();
-                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row[1].ToString()));
-                        itemManifiesto.oficina = row[2].ToString();
+                        itemManifiesto.nroPlanilla = row["Planilla"].ToString();
+                        itemManifiesto.fechaGen = String.Format("{0:dd/MM/yyyy HH:mm:ss}", DateTime.Parse(row["Fecha"].ToString()));
+                        itemManifiesto.oficina = row["Oficina"].ToString();
                         try
                         {
-                            itemManifiesto.estMinisterio = row[3].ToString();
+                            itemManifiesto.estMinisterio = row["Ministerio"].ToString();
                         }
                         catch (Exception)
                         {
@@ -218,7 +266,7 @@ namespace estadoManifiestos.Controllers
                         }
                         try
                         {
-                            itemManifiesto.estDestseguro = row[4].ToString();
+                            itemManifiesto.estDestseguro = row["Deseguro"].ToString();
                         }
                         catch (Exception)
                         {
@@ -228,20 +276,34 @@ namespace estadoManifiestos.Controllers
 
                         try
                         {
-                            itemManifiesto.estOsp = row[5].ToString();
+                            itemManifiesto.estOsp = row["Osp"].ToString();
                         }
                         catch (Exception)
                         {
                             itemManifiesto.estOsp = "NC";
+                        }
+                        try
+                        {
+                            itemManifiesto.estBavaria = row["Bavaria"].ToString();
+                        }
+                        catch (Exception)
+                        {
+                            itemManifiesto.estBavaria = "NC";
                         }
                         listaManifiestos.Add(itemManifiesto);
                     }
                 }
                 return Json(listaManifiestos);
             }
-            catch (Exception)
+            catch (OracleException oraEx)
             {
-                return Json(0);
+                Response.StatusCode = 500;
+                return Json(Response.StatusDescription = oraEx.Message);
+            }
+            catch (Exception Ex)
+            {
+                Response.StatusCode = 500;
+                return Json(Response.StatusDescription = Ex.Message);
             }
         }
         #endregion

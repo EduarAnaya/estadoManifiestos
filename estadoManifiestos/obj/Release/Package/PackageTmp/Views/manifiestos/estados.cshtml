@@ -33,6 +33,7 @@
                             <th>Min.TRANSPORTE</th>
                             <th>Dest. SEGURO</th>
                             <th>OSP</th>
+                            <th>BAVARIA</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,6 +73,7 @@
                             <th>Min.TRANSPORTE</th>
                             <th>Dest. SEGURO</th>
                             <th>OSP</th>
+                            <th>BAVARIA</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -237,6 +239,57 @@
                                         <div class="collapse" id="@("naOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
                                                 <p>Los viajes de vehículos terceros no son reportados a OSP</p>
+                                            </div>
+                                        </div>
+                                            break;
+                                        default:
+                                        <span>Desconocido</span>
+                                            break;
+                                    }
+                                </td>
+                                 <!--****************BAVARIA****************-->
+                                <td>
+                                    @switch (manifiesto.estBavaria)
+                                    {
+                                        case 1:
+                                        <span class="badge badge-pill badge-success bagdEnviadoOsp" data-toggle="collapse" href="@("#enOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
+                                        <div class="collapse" id="@("enBav" + manifiesto.nroPlanilla)">
+                                        </div>
+                                            break;
+                                        case 2:
+                                        <span class="badge badge-pill badge-warning bagdPendienteOsp"  data-toggle="collapse" href="@("#pOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
+                                        <div class="collapse" id="@("pBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " tarda en subir")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>   
+                                            break;
+                                        case 3:
+                                        <span class="badge badge-pill badge-danger bagdRechazadoOsp" data-toggle="collapse" href="@("#rcOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
+                                        <div class="collapse" id="@("rcBav" + manifiesto.nroPlanilla)">
+                                        </div>
+                                            break;
+                                        case 4:        
+                                        <span class="badge badge-pill badge-danger bagdncOsp" data-toggle="collapse" href="@("#nrOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
+                                        <div class="collapse" id="@("nrBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Error descnocido, por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " retorna error desconocido para el ministerio")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>                                    
+                                            break;
+                                        case 6:
+                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Propio</span>
+                                        <div class="collapse" id="@("naBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>Solo se reportan viajes de Bavaria.</p>
                                             </div>
                                         </div>
                                             break;

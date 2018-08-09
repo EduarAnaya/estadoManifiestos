@@ -1,52 +1,52 @@
-$(function () {
-  $("#btnRefres").on("click", function (e) {
+$(function() {
+  $("#btnRefres").on("click", function(e) {
     actualizar();
   });
 
   //evento que permite mostrar un collapse y ocultar los dem�s que est�n abiertos.
-  $(".collapse").on("show.bs.collapse", function (e) {
+  $(".collapse").on("show.bs.collapse", function(e) {
     var dataID = e.target.id;
     $(".collapse").collapse("hide");
     $(dataID).collapse();
   });
 
   /***********EVENTOS CONSULTA DE ESTADOS MIN.T************/
-  $("table").on("click", ".bagdEnviadoMt", function (e) {
+  $("table").on("click", ".bagdEnviadoMt", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoMt", function (e) {
+  $("table").on("click", ".bagdRechazadoMt", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 1;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS DEST.S************/
-  $("table").on("click", ".bagdEnviadoDs", function (e) {
+  $("table").on("click", ".bagdEnviadoDs", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoDs", function (e) {
+  $("table").on("click", ".bagdRechazadoDs", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 2;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
   /***********EVENTOS CONSULTA DE ESTADOS OSP************/
-  $("table").on("click", ".bagdEnviadoOsp", function (e) {
+  $("table").on("click", ".bagdEnviadoOsp", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
     ejecutaPost(manifiesto, entidad, $elemento);
   });
 
-  $("table").on("click", ".bagdRechazadoOsp", function (e) {
+  $("table").on("click", ".bagdRechazadoOsp", function(e) {
     var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
     var $elemento = this.parentNode.children[1];
     var entidad = 3;
@@ -55,57 +55,72 @@ $(function () {
   /***********EVENTOS CONSULTA DE ESTADOS************/
   function ejecutaPost(manifiesto, entidad, $elemento) {
     $.post("/manifiestos/estadomManifiesto", {
-        planilla: manifiesto,
-        entidad: entidad
-      })
-      .done(function (response) {
+      planilla: manifiesto,
+      entidad: entidad
+    })
+      .done(function(response) {
         renderRespuesta(response, $elemento);
       })
-      .fail(function () {
-        alert("error");
+      .fail(function(dataMess) {
+        alert("Error en el servidor codigo#500: " + dataMess.statusText);
       });
   }
+  /***********EVENTOS CONSULTA DE ESTADOS BAVARIA************/
+  $("table").on("click", ".bagdEnviadoBav", function(e) {
+    var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
+    var $elemento = this.parentNode.children[1];
+    var entidad = 4;
+    ejecutaPost(manifiesto, entidad, $elemento);
+  });
+
+  $("table").on("click", ".bagdRechazadoBav", function(e) {
+    var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
+    var $elemento = this.parentNode.children[1];
+    var entidad = 4;
+    ejecutaPost(manifiesto, entidad, $elemento);
+  });
 
   function renderRespuesta(response, $elemento) {
     var $coll = $elemento;
     var resultado = null;
-    if (response["0"].idMin == "") { //rechazado
+    if (response["0"].idMin == "") {
+      //rechazado
       resultado = $(
         '<div class="card card-body">' +
-        '<dl class="row" style="margin: 0;">' +
-        '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].oficina +
-        "</dd>" +
-        '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].fecha +
-        "</dd>" +
-        '<dt class="col-5 marginTituloDesc">Respuesta. Prov.</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].respuesta +
-        "</dd>" +
-        "</dl>" +
-        "</div>"
+          '<dl class="row" style="margin: 0;">' +
+          '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].oficina +
+          "</dd>" +
+          '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].fecha +
+          "</dd>" +
+          '<dt class="col-5 marginTituloDesc">Respuesta. Prov.</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].respuesta +
+          "</dd>" +
+          "</dl>" +
+          "</div>"
       );
     } else {
       resultado = $(
         '<div class="card card-body">' +
-        '<dl class="row" style="margin: 0;">' +
-        '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].oficina +
-        "</dd>" +
-        '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].fecha +
-        "</dd>" +
-        '<dt class="col-5 marginTituloDesc">Nro. Aprov.</dt>' +
-        '<dd class="col-5 marginDescTtulo">' +
-        response["0"].idMin +
-        "</dd>" +
-        "</dl>" +
-        "</div>"
+          '<dl class="row" style="margin: 0;">' +
+          '<dt class="col-5 marginTituloDesc">Oficina</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].oficina +
+          "</dd>" +
+          '<dt class="col-5 marginTituloDesc">Fecha Envio</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].fecha +
+          "</dd>" +
+          '<dt class="col-5 marginTituloDesc">Nro. Aprov.</dt>' +
+          '<dd class="col-5 marginDescTtulo">' +
+          response["0"].idMin +
+          "</dd>" +
+          "</dl>" +
+          "</div>"
       );
     }
 
@@ -114,7 +129,7 @@ $(function () {
   }
   /*busqueda por demanda*/
   let _ultimaPlanilla = null;
-  $("#searchManifiesto").on("submit", function (e) {
+  $("#searchManifiesto").on("submit", function(e) {
     e.preventDefault();
     var manifiesto = $("#inputManifiesto")
       .val()
@@ -124,11 +139,11 @@ $(function () {
     postDemanda(manifiesto);
   });
 
-  $("#repeatSearch").on("click", function (e) {
+  $("#repeatSearch").on("click", function(e) {
     postDemanda(_ultimaPlanilla);
   });
 
-  $("#clearSearch").on("click", function () {
+  $("#clearSearch").on("click", function() {
     _ultimaPlanilla = null;
     $("#tablaSearch tbody").html("");
     $("#cajatablasearch").addClass("visible");
@@ -136,13 +151,13 @@ $(function () {
 
   function postDemanda(manifiesto) {
     $.post("/manifiestos/demanda", {
-        planilla: manifiesto
-      })
-      .done(function (response) {
+      planilla: manifiesto
+    })
+      .done(function(response) {
         renderTable(response);
       })
-      .fail(function () {
-        alert("error");
+      .fail(function(dataError) {
+        alert("Error en el servidor codigo#500: " + dataError.statusText);
       });
   }
 
@@ -158,8 +173,9 @@ $(function () {
         var stmint = _registro.estMinisterio;
         var stdests = _registro.estDestseguro;
         var stosp = _registro.estOsp;
+        var stBav = _registro.estBavaria;
 
-        var tdMint, tdDsts, tdOsp;
+        var tdMint, tdDsts, tdOsp, tdBav;
 
         switch (stmint) {
           case 1: //enviado
@@ -358,7 +374,7 @@ $(function () {
               nrPlanilla +
               '" retorna error desconocido para el ministerio")">informar a sistemas</a></p></div></div>';
             break;
-          case 6:
+          case 6: //Tercero
             tdOsp =
               '<span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="#naOsp' +
               nrPlanilla +
@@ -370,28 +386,104 @@ $(function () {
               "<p>Los viajes de vehículos terceros no son reportados a OSP</p></div></div>";
             break;
         }
+        switch (stBav) {
+          case 1: //enviado
+            tdBav =
+              '<span class="badge badge-pill badge-success bagdEnviadoBav" data-toggle="collapse" href="#enBav' +
+              nrPlanilla +
+              '"' +
+              'role="button" aria-expanded="false">Enviado</span>' +
+              '<div class="collapse" id="enBav' +
+              nrPlanilla +
+              '"></div>';
+            break;
+          case 2: //Pendiente
+            tdBav =
+              '<span class="badge badge-pill badge-warning bagdPendienteBav"  data-toggle="collapse" href="#pBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">Pendiente</span>' +
+              '<div class="collapse" id="pMt' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor <br />" +
+              '<a href="mailto:soporte@transer.com.co?Subject=Manifiesto ' +
+              nrPlanilla +
+              ' tarda en subir">informar a sistemas</a> ' +
+              "</p>" +
+              "</div>" +
+              "</div>";
+            break;
+          case 3: //rechazado
+            tdBav =
+              '<span class="badge badge-pill badge-danger bagdRechazadoBav" data-toggle="collapse" href="' +
+              "#rcBav" +
+              nrPlanilla +
+              '"' +
+              ' role="button" aria-expanded="false">Rechazado</span>' +
+              '<div class="collapse" id="' +
+              "rcBav" +
+              nrPlanilla +
+              '"' +
+              ">" +
+              "</div>";
+            break;
+          case 4: //desconocido
+            tdBav =
+              '<span class="badge badge-pill badge-danger bagdncBav" data-toggle="collapse" href="#ncBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">No Catalogado</span>' +
+              '<div class="collapse" id="ncBav' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Error descnocido, por favor <br />" +
+              '<a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto "' +
+              nrPlanilla +
+              '" retorna error desconocido para el envió a Bavaria ")">informar a sistemas</a>' +
+              "</p>" +
+              "</div>" +
+              "</div>";
+            break;
+          case 6: //propio
+            tdBav =
+              '<span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="#naBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">No Propio</span>' +
+              '<div class="collapse" id="naBav' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>El viaje no pertenece al cliente Bavaria.</p>" +
+              "</div>" +
+              "</div>";
+            break;
+        }
 
         var tr = $(
           "<tr>" +
-          "<td>" +
-          _registro.nroPlanilla +
-          "</td>" +
-          "<td>" +
-          _registro.fechaGen +
-          "</td>" +
-          "<td>" +
-          _registro.oficina +
-          "</td>" +
-          "<td>" +
-          tdMint +
-          "</td>" +
-          "<td>" +
-          tdDsts +
-          "</td>" +
-          "<td>" +
-          tdOsp +
-          "</td>" +
-          "</tr>"
+            "<td>" +
+            _registro.nroPlanilla +
+            "</td>" +
+            "<td>" +
+            _registro.fechaGen +
+            "</td>" +
+            "<td>" +
+            _registro.oficina +
+            "</td>" +
+            "<td>" +
+            tdMint +
+            "</td>" +
+            "<td>" +
+            tdDsts +
+            "</td>" +
+            "<td>" +
+            tdOsp +
+            "</td>" +
+            "<td>" +
+            tdBav +
+            "</td>" +
+            "</tr>"
         );
       }
       $destino.html("");
@@ -407,8 +499,8 @@ function actualizar() {
   $("#btnRefres").addClass("disabled");
   var estado = $(
     '<div class="alert alert-primary" role="alert">' +
-    "<strong>Procesando consulta, por favor espere...</strong>" +
-    '</div>"'
+      "<strong>Procesando consulta, por favor espere...</strong>" +
+      '</div>"'
   );
   $("#estData").append(estado);
 }
