@@ -58,6 +58,11 @@ a.navbar-brand.titulo {
     font-size: 0.7rem;
 }
 
+i.fas.fa-search-plus {
+    position: absolute;
+    right: 20px;
+}
+
 #estData {
     text-align: center;
 }
@@ -179,9 +184,4 @@ dd {
 
 .row.rowResumen {
     text-align: end;
-}
-
-i.fas.fa-search-plus {
-    position: absolute;
-    right: 20px;
 }

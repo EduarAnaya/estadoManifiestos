@@ -249,19 +249,6 @@ $(function () {
               "</div>" +
               "</div>";
             break;
-          case "NA": //NA
-            tdMint =
-              '<span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="#prMt' +
-              nrPlanilla +
-              '" role="button" aria-expanded="false">Propio</span>' +
-              '<div class="collapse" id="prMt' +
-              nrPlanilla +
-              '">' +
-              '<div class="card card-body">' +
-              "<p>Este viaje no se reporta al ministerio.</p>" +
-              "</div>" +
-              "</div>";
-            break;
         }
         switch (stdests) {
           case "E": //enviado
@@ -383,7 +370,7 @@ $(function () {
               nrPlanilla +
               '">' +
               '<div class="card card-body">' +
-              "<p>Los viajes con vehículos Terceros no se reportan a OSP.</p></div></div>";
+              "<p>Los viajes de vehículos terceros no son reportados a OSP</p></div></div>";
             break;
         }
         switch (stBav) {
@@ -449,12 +436,12 @@ $(function () {
             tdBav =
               '<span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="#naBav' +
               nrPlanilla +
-              '" role="button" aria-expanded="false">No Bavaria</span>' +
+              '" role="button" aria-expanded="false">No Propio</span>' +
               '<div class="collapse" id="naBav' +
               nrPlanilla +
               '">' +
               '<div class="card card-body">' +
-              "<p>Solo se reportan los viajes del cliente Bavaria</p>" +
+              "<p>Solo se reportan los viajes del cliente Bavaria.</p>" +
               "</div>" +
               "</div>";
             break;
