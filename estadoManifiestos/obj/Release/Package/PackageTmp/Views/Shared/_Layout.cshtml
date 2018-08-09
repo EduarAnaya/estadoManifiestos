@@ -9,8 +9,9 @@
     <title>@ViewBag.title</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
     <link href="~/CSS/css_Prov/css_bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/CSS/css_Prov/fontawesome/css/all.css" rel="stylesheet" />
     <link href="~/Scripts/js_prov/datatables/datatables.css" rel="stylesheet" />
-    <link href="~/CSS/css_edit/style.css?v2.7" rel="stylesheet" />
+    <link href="~/CSS/css_edit/style.css?v3.0" rel="stylesheet" />
 
 
 </head>
@@ -18,13 +19,9 @@
     <script src="~/Scripts/js_prov/jQuery/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/js_prov/js_bootstrap/bootstrap.min.js"></script>
     <script src="~/Scripts/js_prov/datatables/datatables.js?v2.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
-
-
     <script src="~/Scripts/js_prov/plugTimer.js"></script>
     <script src="~/Scripts/js_edit/js_timer.Js"></script>
-    <script src="~/Scripts/js_edit/index.js"></script>
+    <script src="~/Scripts/js_edit/index.js?v1.1"></script>
 
 
     <!-- Navegacion -->
@@ -45,7 +42,7 @@
                             <h6>ENVIADOS</h6>
                         </div>
                         <div>
-                            <span class="badge badge-success desCantidad">@ViewBag.mEnviados</span>
+                            <span id="btnsearchEnv" class="btn badge badge-success desCantidad">@ViewBag.mEnviados <i class="fas fa-search-plus"></i></span>
                         </div>
                     </div>
                     <div class="col">
@@ -53,7 +50,7 @@
                             <h6>PENDIENTES</h6>
                         </div>
                         <div>
-                            <span class="badge badge-warning desCantidad">@ViewBag.mPendientes</span>
+                            <span id="btnsearchPend" class="btn badge badge-warning desCantidad">@ViewBag.mPendientes <i class="fas fa-search-plus"></i></span>
                         </div>
                     </div>
                     <div class="col">
@@ -61,48 +58,20 @@
                             <h6>RECHAZADOS</h6>
                         </div>
                         <div>
-                            <span class="badge badge-danger desCantidad">@ViewBag.mError</span>
+                            <span id="btnsearchRech" class="btn badge badge-danger desCantidad">@ViewBag.mError <i class="fas fa-search-plus"></i></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <h6>Nro. Registros</h6>
+                        </div>
+                        <div>
+                            <span id="btnsearchReset" class="btn badge badge-light desCantidad">@ViewBag.Tregistros <i class="fas fa-search-plus"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-        @*        <div class="container contTitulo">
-            <a class="navbar-brand titulo" href="@Url.Action("estados", "manifiestos")">
-                <img src="~/Content/Logo_transer.png" style="width: 6rem" alt="Inicio" />
-            </a>
-            <h4>Reporte Manifiestos</h4>
-        </div>*@
-        @* <div class="row rowResumen">
-            <div class="col">
-                <div>
-                    <h6>ENVIADOS</h6>
-                </div>
-                <div>
-                    <span class="badge badge-success desCantidad">@ViewBag.mEnviados</span>
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <h6>PENDIENTES</h6>
-                </div>
-                <div>
-                    <span class="badge badge-warning desCantidad">@ViewBag.mPendientes</span>
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <h6>RECHAZADOS</h6>
-                </div>
-                <div>
-                    <span class="badge badge-danger desCantidad">@ViewBag.mError</span>
-                </div>
-            </div>
-        </div>*@
     </nav>
 
     <div class="container _ContAccion">

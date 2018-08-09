@@ -48,10 +48,22 @@
 <!--Zona de tabla de estados del manifiesto-->
 <div class="row rowItem">
     <div class="col">
-        <div class="row"></div>
         <div class="row">
             <h3>Actividades recientes</h3>
-            <h5 id="lbldate">Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
+            <div class="col col-resumesDates">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h5>Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="p-timeProsc">Tiempo de respuesta: @ViewBag.T_tiempo Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col cajatabla table-responsive">
@@ -180,10 +192,10 @@
                                         </div>
                                             break;
                                         case "NA":
-                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
+                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
                                         <div class="collapse" id="@("naDs" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Este viaje no se reporta a Destino Seguro</p>
+                                                <p>Los viajes con vehículos propios no se reportan a Destino Seguro.</p>
                                             </div>
                                         </div> 
                                             break;
@@ -228,11 +240,11 @@
                                             </div>
                                         </div>                                    
                                             break;
-                                        case "NA":
-                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
+                                        case "T":
+                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Tercero</span>
                                         <div class="collapse" id="@("naOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Este viaje no se reporta a OSP</p>
+                                                <p>Los viajes con vehículos Terceros no se reportan a OSP.</p>
                                             </div>
                                         </div>
                                             break;
@@ -281,10 +293,10 @@
                                         </div>                                    
                                             break;
                                         case "NA":
-                                        <span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="@("#naBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
+                                        <span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="@("#naBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Bavaria</span>
                                         <div class="collapse" id="@("naBav" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>El viaje no pertenece al cliente Bavaria.</p>
+                                                <p>Solo se reportan los viajes del cliente Bavaria.</p>
                                             </div>
                                         </div>
                                             break;
@@ -294,8 +306,6 @@
                         }
                     </tbody>
                 </table>
-                @ViewBag.T_tiempo
-
             </div>
         </div>
     </div>

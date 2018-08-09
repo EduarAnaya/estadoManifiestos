@@ -25,7 +25,7 @@ namespace estadoManifiestos.Controllers
         /*
          *ACCION: Retorna el estado en las diferentes entidades de los manifiestos generados en las últimas 24 horas
          */
-        //[OutputCache(Duration = 60)]
+        [OutputCache(Duration = 60)]
         public ActionResult estados()
         {
             Stopwatch monitor = new Stopwatch();
@@ -38,6 +38,7 @@ namespace estadoManifiestos.Controllers
                 int enviados = 0;
                 int pendientes = 0;
                 int error = 0;
+                int Tregistros = 0;
                 if (dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
@@ -61,10 +62,7 @@ namespace estadoManifiestos.Controllers
                                     error++;
                                     break;
                                 case ""://RECHAZADO
-                                    itemManifiesto.estMinisterio = "NC";//NO CATALOGADO
-                                    break;
-                                default:
-                                    itemManifiesto.estMinisterio = "NA";//NO APLICA
+                                    itemManifiesto.estMinisterio = "U";//NO CATALOGADO
                                     break;
                             }
                         }
@@ -86,12 +84,13 @@ namespace estadoManifiestos.Controllers
                                 case "R":
                                     error++;
                                     break;
-                                case ""://RECHAZADO
-                                    itemManifiesto.estDestseguro = "NC";//NO CATALOGADO
+                                case "T":
+                                    itemManifiesto.estDestseguro = "E";
                                     break;
-                                default:
+                                case ""://Propio
                                     itemManifiesto.estDestseguro = "NA";
                                     break;
+
                             }
                         }
                         catch (Exception)
@@ -113,10 +112,7 @@ namespace estadoManifiestos.Controllers
                                 case "R":
                                     error++;
                                     break;
-                                case ""://RECHAZADO
-                                    itemManifiesto.estOsp = "NC";//NO CATALOGADO
-                                    break;
-                                default:
+                                case ""://Tercero
                                     itemManifiesto.estOsp = "NA";
                                     break;
                             }
@@ -141,10 +137,7 @@ namespace estadoManifiestos.Controllers
                                     error++;
                                     break;
                                 case ""://RECHAZADO
-                                    itemManifiesto.estBavaria = "NC";//NO CATALOGADO
-                                    break;
-                                default:
-                                    itemManifiesto.estBavaria = "NA";
+                                    itemManifiesto.estBavaria = "NA";//NO CATALOGADO
                                     break;
                             }
                         }
@@ -158,7 +151,10 @@ namespace estadoManifiestos.Controllers
                 ViewBag.mEnviados = enviados;
                 ViewBag.mPendientes = pendientes;
                 ViewBag.mError = error;
-                ViewBag.T_tiempo = monitor.ElapsedMilliseconds;
+                monitor.Stop();
+                Tregistros = dt.Rows.Count;
+                ViewBag.Tregistros = Tregistros;
+                ViewBag.T_tiempo = monitor.Elapsed.TotalSeconds.ToString("#.##");
                 return View(listaManifiestos);
             }
             catch (Exception Ex)
@@ -258,6 +254,10 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estMinisterio = row["Ministerio"].ToString();
+                            if (itemManifiesto.estMinisterio == "")
+                            {
+                                itemManifiesto.estMinisterio = "U";
+                            }
                         }
                         catch (Exception)
                         {
@@ -267,6 +267,14 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estDestseguro = row["Deseguro"].ToString();
+                            if (itemManifiesto.estDestseguro == "T")
+                            {
+                                itemManifiesto.estDestseguro = "E";
+                            }
+                            if (itemManifiesto.estDestseguro == "")
+                            {
+                                itemManifiesto.estDestseguro = "NA";
+                            }
                         }
                         catch (Exception)
                         {
@@ -285,6 +293,10 @@ namespace estadoManifiestos.Controllers
                         try
                         {
                             itemManifiesto.estBavaria = row["Bavaria"].ToString();
+                            if (itemManifiesto.estBavaria == "")
+                            {
+                                itemManifiesto.estBavaria = "NA";
+                            }
                         }
                         catch (Exception)
                         {

@@ -47,9 +47,20 @@ a.navbar-brand.titulo {
     border-radius: 5px;
 }
 
-#lbldate {
+.col-resumesDates {
+    justify-content: end;
+    display: grid;
+}
+
+.p-timeProsc {
+    justify-content: end;
+    display: grid;
+    font-size: 0.7rem;
+}
+
+i.fas.fa-search-plus {
     position: absolute;
-    right: 0;
+    right: 20px;
 }
 
 #estData {
