@@ -2,15 +2,20 @@
     ViewBag.Title = "estados-Error";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col">
-    <div class="row">
-        <h2>Lo sentimos; se produjo un error al procesar la solicitud.
-        </h2>
-    </div>
-    <div class="row">
-        <a class="btn btn-primary btn-lg btn-block" href="/manifiestos/estados">Volver a intentar</a>
-    </div>
-    
-</div>
 
+
+
+@if (ViewData.ModelState.Any(x => x.Value.Errors.Any()))
+{
+    <div class="col">
+        <div class="row">
+            <p>@Html.ValidationSummary(true, "Aviso:")</p>
+            <p>@Html.ValidationMessage("ErrorLoad")</p>
+        </div>
+        <div class="row">
+            <a class="btn btn-primary btn-lg btn-block" href="/manifiestos/estados">Volver a intentar</a>
+        </div>
+
+    </div>
+}
 

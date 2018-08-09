@@ -47,9 +47,15 @@ a.navbar-brand.titulo {
     border-radius: 5px;
 }
 
-#lbldate {
-    position: absolute;
-    right: 0;
+.col-resumesDates {
+    justify-content: end;
+    display: grid;
+}
+
+.p-timeProsc {
+    justify-content: end;
+    display: grid;
+    font-size: 0.7rem;
 }
 
 #estData {
@@ -173,4 +179,9 @@ dd {
 
 .row.rowResumen {
     text-align: end;
+}
+
+i.fas.fa-search-plus {
+    position: absolute;
+    right: 20px;
 }

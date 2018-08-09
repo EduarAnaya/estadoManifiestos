@@ -13,5 +13,8 @@ namespace estadoManifiestos.Models
         public string estMinisterio{ get; set; }
         public string estDestseguro { get; set; }
         public string estOsp { get; set; }
+        public string estBavaria { get; set; }
+        
+        
     }
 }

@@ -33,6 +33,7 @@
                             <th>Min.TRANSPORTE</th>
                             <th>Dest. SEGURO</th>
                             <th>OSP</th>
+                            <th>BAVARIA</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,10 +51,24 @@
         <div class="row"></div>
         <div class="row">
             <h3>Actividades recientes</h3>
-            <h5 id="lbldate">Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
+            <div class="col col-resumesDates">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h5 id="lbldate">Ultima actualización <span class="badge badge-info" style="width: auto;">@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</span></h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="p-timeProsc">Tiempo de respuesta: @ViewBag.T_tiempo Segundos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="row">
-            <div class="col cajatabla">
+            <div class="col cajatabla table-responsive">
                 <script type="text/javascript">
                     $(function () {
                         $('#table_id').DataTable({
@@ -66,12 +81,13 @@
                 <table id="table_id" class="display">
                     <thead>
                         <tr>
-                            <th>MANIFIESTO</th>
-                            <th>FECHA</th>
-                            <th>OFICINA</th>
-                            <th>Min.TRANSPORTE</th>
-                            <th>Dest. SEGURO</th>
-                            <th>OSP</th>
+                            <th>Manifiesto</th>
+                            <th>Fecha</th>
+                            <th>Oficina</th>
+                            <th>Min.Transporte</th>
+                            <th>Dest. Seguro</th>
+                            <th>Osp</th>
+                            <th>Bavaria</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -81,7 +97,7 @@
                                 <td>@manifiesto.nroPlanilla</td>
                                 <td>@manifiesto.fechaGen</td>
                                 <td>@manifiesto.oficina</td>
-                                <!--codigos de estado;1=enviado;2:pendiente;3:error;4:norequiere-->
+                                <!--codigos de estado;1=enviado;2:pendiente;3:error;4:No catalogado-->
                                 <!--****************Min. Trasporte****************-->
                                 <td>
                                     @switch (manifiesto.estMinisterio)
@@ -178,10 +194,10 @@
                                         </div>
                                             break;
                                         case "NA":
-                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
+                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
                                         <div class="collapse" id="@("naDs" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Este viaje no se reporta a Destino Seguro</p>
+                                                <p>Los viajes con vehículos propios no se reportan a Destino Seguro.</p>
                                             </div>
                                         </div> 
                                             break;
@@ -226,11 +242,63 @@
                                             </div>
                                         </div>                                    
                                             break;
-                                        case "NA":
-                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
+                                        case "T":
+                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Tercero</span>
                                         <div class="collapse" id="@("naOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Este viaje no se reporta a OSP</p>
+                                                <p>Los viajes con vehículos Terceros no se reportan a OSP.</p>
+                                            </div>
+                                        </div>
+                                            break;
+                                    }
+                                </td>
+                                <!--****************BAVARIA****************-->
+                                <td>
+                                    @*1:Eniado
+                                2:Pendiente
+                                3:Rechazado
+                                4:No catalogado*@
+                                    @switch (manifiesto.estBavaria)
+                                    {
+                                        case "E":
+                                        <span class="badge badge-pill badge-success bagdEnviadoBav" data-toggle="collapse" href="@("#enBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
+                                        <div class="collapse" id="@("enBav" + manifiesto.nroPlanilla)">
+                                        </div>
+                                            break;
+                                        case "P":
+                                        <span class="badge badge-pill badge-warning bagdPendienteBav"  data-toggle="collapse" href="@("#pBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
+                                        <div class="collapse" id="@("pBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " tarda en subir")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>   
+                                            break;
+                                        case "R":
+                                        <span class="badge badge-pill badge-danger bagdRechazadoBav" data-toggle="collapse" href="@("#rcBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
+                                        <div class="collapse" id="@("rcBav" + manifiesto.nroPlanilla)">
+                                        </div>
+                                            break;
+                                        case "NC":        
+                                        <span class="badge badge-pill badge-danger bagdncBav" data-toggle="collapse" href="@("#ncBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
+                                        <div class="collapse" id="@("ncBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>
+                                                    Error descnocido, por favor
+                                                <br />
+                                                    <a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto " + manifiesto.nroPlanilla + " retorna error desconocido para el envió a Bavaria ")">informar a sistemas</a>
+                                                </p>
+                                            </div>
+                                        </div>                                    
+                                            break;
+                                        case "NA":
+                                        <span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="@("#naBav" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Bavaria</span>
+                                        <div class="collapse" id="@("naBav" + manifiesto.nroPlanilla)">
+                                            <div class="card card-body">
+                                                <p>Solo se reportan los viajes del cliente Bavaria.</p>
                                             </div>
                                         </div>
                                             break;
@@ -240,7 +308,6 @@
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

@@ -61,15 +61,30 @@ $(function () {
       .done(function (response) {
         renderRespuesta(response, $elemento);
       })
-      .fail(function () {
-        alert("error");
+      .fail(function (dataMess) {
+        alert("Error en el servidor codigo#500: " + dataMess.statusText);
       });
   }
+  /***********EVENTOS CONSULTA DE ESTADOS BAVARIA************/
+  $("table").on("click", ".bagdEnviadoBav", function (e) {
+    var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
+    var $elemento = this.parentNode.children[1];
+    var entidad = 4;
+    ejecutaPost(manifiesto, entidad, $elemento);
+  });
+
+  $("table").on("click", ".bagdRechazadoBav", function (e) {
+    var manifiesto = this.parentNode.parentNode.cells["0"].innerText;
+    var $elemento = this.parentNode.children[1];
+    var entidad = 4;
+    ejecutaPost(manifiesto, entidad, $elemento);
+  });
 
   function renderRespuesta(response, $elemento) {
     var $coll = $elemento;
     var resultado = null;
-    if (response["0"].idMin == "") { //rechazado
+    if (response["0"].idMin == "") {
+      //rechazado
       resultado = $(
         '<div class="card card-body">' +
         '<dl class="row" style="margin: 0;">' +
@@ -141,8 +156,8 @@ $(function () {
       .done(function (response) {
         renderTable(response);
       })
-      .fail(function () {
-        alert("error");
+      .fail(function (dataError) {
+        alert("Error en el servidor codigo#500: " + dataError.statusText);
       });
   }
 
@@ -158,11 +173,12 @@ $(function () {
         var stmint = _registro.estMinisterio;
         var stdests = _registro.estDestseguro;
         var stosp = _registro.estOsp;
+        var stBav = _registro.estBavaria;
 
-        var tdMint, tdDsts, tdOsp;
+        var tdMint, tdDsts, tdOsp, tdBav;
 
         switch (stmint) {
-          case 1: //enviado
+          case "E": //enviado
             tdMint =
               '<span class="badge badge-pill badge-success bagdEnviadoMt" data-toggle="collapse" href="#enMt' +
               nrPlanilla +
@@ -172,7 +188,7 @@ $(function () {
               nrPlanilla +
               '"></div>';
             break;
-          case 2: //Pendiente
+          case "P": //Pendiente
             tdMint =
               '<span class="badge badge-pill badge-warning bagdPendienteMt"  data-toggle="collapse" href="#pMt' +
               nrPlanilla +
@@ -189,7 +205,7 @@ $(function () {
               "</div>" +
               "</div>";
             break;
-          case 3: //rechazado
+          case "R": //rechazado
             tdMint =
               '<span class="badge badge-pill badge-danger bagdRechazadoMt" data-toggle="collapse" href="' +
               "#rcMt" +
@@ -203,7 +219,7 @@ $(function () {
               ">" +
               "</div>";
             break;
-          case 4: //desconocido
+          case "NC": //desconocido
             tdMint =
               '<span class="badge badge-pill badge-danger bagdncMt" data-toggle="collapse" href="#nrMt' +
               nrPlanilla +
@@ -220,7 +236,7 @@ $(function () {
               "</div>" +
               "</div>";
             break;
-          case 5: //urbano
+          case "U": //urbano
             tdMint =
               '<span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="#naMt' +
               nrPlanilla +
@@ -233,7 +249,7 @@ $(function () {
               "</div>" +
               "</div>";
             break;
-          case 6: //propio
+          case "NA": //NA
             tdMint =
               '<span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="#prMt' +
               nrPlanilla +
@@ -242,13 +258,13 @@ $(function () {
               nrPlanilla +
               '">' +
               '<div class="card card-body">' +
-              "<p>Los viajes de vehículos propios que son despachados por otra empresa de transporte no se reportan al ministerio.</p>" +
+              "<p>Este viaje no se reporta al ministerio.</p>" +
               "</div>" +
               "</div>";
             break;
         }
         switch (stdests) {
-          case 1: //enviado
+          case "E": //enviado
             tdDsts =
               '<span class="badge badge-pill badge-success bagdEnviadoDs" data-toggle="collapse" href="#enDs' +
               nrPlanilla +
@@ -258,7 +274,7 @@ $(function () {
               '">' +
               "</div>";
             break;
-          case 2: //pendiente
+          case "P": //pendiente
             tdDsts =
               '<span class="badge badge-pill badge-warning bagdPendienteDs"  data-toggle="collapse" href="#pDs' +
               nrPlanilla +
@@ -273,7 +289,7 @@ $(function () {
               ' tarda en subir">informar a sistemas</a> ' +
               "</p></div></div>";
             break;
-          case 3: //rechazado
+          case "R": //rechazado
             tdDsts =
               '<span class="badge badge-pill badge-danger bagdRechazadoDs" data-toggle="collapse" href="#rcDs' +
               nrPlanilla +
@@ -282,7 +298,7 @@ $(function () {
               nrPlanilla +
               '"></div>';
             break;
-          case 4: //desconocido
+          case "NC": //desconocido
             tdDsts =
               '<span class="badge badge-pill badge-danger bagdncDs" data-toggle="collapse" href="#nrDs' +
               nrPlanilla +
@@ -297,7 +313,7 @@ $(function () {
               '" retorna error desconocido para el ministerio")">informar a sistemas</a>' +
               "</p></div></div>";
             break;
-          case 6: //Propio
+          case "NA": //Propio
             tdDsts =
               '<span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="#naDs' +
               nrPlanilla +
@@ -306,12 +322,12 @@ $(function () {
               nrPlanilla +
               '">' +
               '<div class="card card-body">' +
-              "<p>Los viajes de vehículos Propios no son reportados a Destino Seguro</p>" +
+              "<p>Los viajes con vehículos propios no se reportan a Destino Seguro.</p>" +
               "</div></div>";
             break;
         }
         switch (stosp) {
-          case 1: //enviado
+          case "E": //enviado
             tdOsp =
               '<span class="badge badge-pill badge-success bagdEnviadoOsp" data-toggle="collapse" href="#enOsp' +
               nrPlanilla +
@@ -320,7 +336,7 @@ $(function () {
               nrPlanilla +
               '"></div>';
             break;
-          case 2: //pendiente
+          case "P": //pendiente
             tdOsp =
               '<span class="badge badge-pill badge-warning bagdPendienteOsp"  data-toggle="collapse" href="#pOsp' +
               nrPlanilla +
@@ -335,7 +351,7 @@ $(function () {
               '" tarda en subir")">informar a sistemas</a>' +
               "</p></div></div>";
             break;
-          case 3: //rechazado
+          case "R": //rechazado
             tdOsp =
               '<span class="badge badge-pill badge-danger bagdRechazadoOsp" data-toggle="collapse" href="#rcOsp' +
               nrPlanilla +
@@ -344,7 +360,7 @@ $(function () {
               nrPlanilla +
               '"></div>';
             break;
-          case 4: //descnocido
+          case "NC": //descnocido
             tdOsp =
               '<span class="badge badge-pill badge-danger bagdncOsp" data-toggle="collapse" href="#nrOsp' +
               nrPlanilla +
@@ -358,7 +374,7 @@ $(function () {
               nrPlanilla +
               '" retorna error desconocido para el ministerio")">informar a sistemas</a></p></div></div>';
             break;
-          case 6:
+          case "T": //Tercero
             tdOsp =
               '<span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="#naOsp' +
               nrPlanilla +
@@ -367,7 +383,80 @@ $(function () {
               nrPlanilla +
               '">' +
               '<div class="card card-body">' +
-              "<p>Los viajes de vehículos terceros no son reportados a OSP</p></div></div>";
+              "<p>Los viajes con vehículos Terceros no se reportan a OSP.</p></div></div>";
+            break;
+        }
+        switch (stBav) {
+          case "E": //enviado
+            tdBav =
+              '<span class="badge badge-pill badge-success bagdEnviadoBav" data-toggle="collapse" href="#enBav' +
+              nrPlanilla +
+              '"' +
+              'role="button" aria-expanded="false">Enviado</span>' +
+              '<div class="collapse" id="enBav' +
+              nrPlanilla +
+              '"></div>';
+            break;
+          case "P": //Pendiente
+            tdBav =
+              '<span class="badge badge-pill badge-warning bagdPendienteBav"  data-toggle="collapse" href="#pBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">Pendiente</span>' +
+              '<div class="collapse" id="pMt' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Envío en proceso, el tiempo estimado de envió es de 5 minutos por favor espere, en caso de persistir este estado por favor <br />" +
+              '<a href="mailto:soporte@transer.com.co?Subject=Manifiesto ' +
+              nrPlanilla +
+              ' tarda en subir">informar a sistemas</a> ' +
+              "</p>" +
+              "</div>" +
+              "</div>";
+            break;
+          case "R": //rechazado
+            tdBav =
+              '<span class="badge badge-pill badge-danger bagdRechazadoBav" data-toggle="collapse" href="' +
+              "#rcBav" +
+              nrPlanilla +
+              '"' +
+              ' role="button" aria-expanded="false">Rechazado</span>' +
+              '<div class="collapse" id="' +
+              "rcBav" +
+              nrPlanilla +
+              '"' +
+              ">" +
+              "</div>";
+            break;
+          case "NC": //desconocido
+            tdBav =
+              '<span class="badge badge-pill badge-danger bagdncBav" data-toggle="collapse" href="#ncBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">No Catalogado</span>' +
+              '<div class="collapse" id="ncBav' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Error descnocido, por favor <br />" +
+              '<a href="@("mailto:soporte@transer.com.co?Subject=" + "Manifiesto "' +
+              nrPlanilla +
+              '" retorna error desconocido para el envió a Bavaria ")">informar a sistemas</a>' +
+              "</p>" +
+              "</div>" +
+              "</div>";
+            break;
+          case "NA": //propio
+            tdBav =
+              '<span class="badge badge-pill badge-light bagdnaBav" data-toggle="collapse" href="#naBav' +
+              nrPlanilla +
+              '" role="button" aria-expanded="false">No Bavaria</span>' +
+              '<div class="collapse" id="naBav' +
+              nrPlanilla +
+              '">' +
+              '<div class="card card-body">' +
+              "<p>Solo se reportan los viajes del cliente Bavaria</p>" +
+              "</div>" +
+              "</div>";
             break;
         }
 
@@ -391,6 +480,9 @@ $(function () {
           "<td>" +
           tdOsp +
           "</td>" +
+          "<td>" +
+          tdBav +
+          "</td>" +
           "</tr>"
         );
       }
@@ -401,6 +493,22 @@ $(function () {
       $("#cajatablasearch").addClass("visible");
     }
   }
+  //Buscar Los Enviados
+  $("#btnsearchEnv").on("click", function () {
+    $("#table_id").DataTable().search("Enviado").draw();
+  });
+  //Buscar los Pendientes
+  $("#btnsearchPend").on("click", function () {
+    $("#table_id").DataTable().search("Pendiente").draw();
+  });
+  //Buscar los Rechazados
+  $("#btnsearchRech").on("click", function () {
+    $("#table_id").DataTable().search("Rechazado").draw();
+  });
+  //Reset
+  $("#btnsearchReset").on("click", function () {
+    $("#table_id").DataTable().search("").draw();
+  });
 });
 
 function actualizar() {
