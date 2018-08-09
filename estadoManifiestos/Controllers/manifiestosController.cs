@@ -47,69 +47,78 @@ namespace estadoManifiestos.Controllers
                         itemManifiesto.oficina = row[2].ToString();
                         try
                         {
-                            itemManifiesto.estMinisterio = int.Parse(row[3].ToString());
+                            itemManifiesto.estMinisterio = row[3].ToString();
                             switch (itemManifiesto.estMinisterio)
                             {
-                                case 1:
+                                case "E"://ENVIADO
                                     enviados++;
                                     break;
-                                case 2:
+                                case "P"://PENDIENTE
                                     pendientes++;
                                     break;
-                                case 3:
+                                case "R"://RECHAZADO
                                     error++;
                                     break;
+                                default:
+                                    itemManifiesto.estMinisterio = "NA";//NO APLICA
+                                    break;
+
                             }
                         }
                         catch (Exception)
                         {
 
-                            itemManifiesto.estMinisterio = 4;
+                            itemManifiesto.estMinisterio = "NC";
                         }
                         try
                         {
-                            itemManifiesto.estDestseguro = int.Parse(row[4].ToString());
+                            itemManifiesto.estDestseguro = row[4].ToString();
                             switch (itemManifiesto.estDestseguro)
                             {
-                                case 1:
+                                case "E":
                                     enviados++;
                                     break;
-                                case 2:
+                                case "P":
                                     pendientes++;
                                     break;
-                                case 3:
+                                case "R":
                                     error++;
                                     break;
+                                default:
+                                    itemManifiesto.estDestseguro = "NA";
+                                    break;
                             }
-
 
                         }
                         catch (Exception)
                         {
 
-                            itemManifiesto.estDestseguro = 4;
+                            itemManifiesto.estDestseguro = "NC";
                         }
 
                         try
                         {
-                            itemManifiesto.estOsp = int.Parse(row[5].ToString());
+                            itemManifiesto.estOsp = row[5].ToString();
                             switch (itemManifiesto.estOsp)
                             {
-                                case 1:
+                                case "E":
                                     enviados++;
                                     break;
-                                case 2:
+                                case "P":
                                     pendientes++;
                                     break;
-                                case 3:
+                                case "R":
                                     error++;
+                                    break;
+                                default:
+                                    itemManifiesto.estOsp = "NA";
                                     break;
                             }
                         }
                         catch (Exception)
                         {
 
-                            itemManifiesto.estOsp = 4;
+                            itemManifiesto.estOsp = "NC";
                         }
 
                         listaManifiestos.Add(itemManifiesto);
@@ -200,30 +209,30 @@ namespace estadoManifiestos.Controllers
                         itemManifiesto.oficina = row[2].ToString();
                         try
                         {
-                            itemManifiesto.estMinisterio = int.Parse(row[3].ToString());
+                            itemManifiesto.estMinisterio = row[3].ToString();
                         }
                         catch (Exception)
                         {
 
-                            itemManifiesto.estMinisterio = 4;
+                            itemManifiesto.estMinisterio = "NC";
                         }
                         try
                         {
-                            itemManifiesto.estDestseguro = int.Parse(row[4].ToString());
+                            itemManifiesto.estDestseguro = row[4].ToString();
                         }
                         catch (Exception)
                         {
 
-                            itemManifiesto.estDestseguro = 4;
+                            itemManifiesto.estDestseguro = "NC";
                         }
 
                         try
                         {
-                            itemManifiesto.estOsp = int.Parse(row[5].ToString());
+                            itemManifiesto.estOsp = row[5].ToString();
                         }
                         catch (Exception)
                         {
-                            itemManifiesto.estOsp = 4;
+                            itemManifiesto.estOsp = "NC";
                         }
                         listaManifiestos.Add(itemManifiesto);
                     }

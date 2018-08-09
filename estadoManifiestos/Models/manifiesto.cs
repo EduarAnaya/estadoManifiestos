@@ -10,8 +10,8 @@ namespace estadoManifiestos.Models
         public string nroPlanilla { get; set; }
         public string fechaGen{get;set;}
         public string oficina{get;set;}
-        public int estMinisterio{ get; set; }
-        public int estDestseguro { get; set; }
-        public int estOsp { get; set; }
+        public string estMinisterio{ get; set; }
+        public string estDestseguro { get; set; }
+        public string estOsp { get; set; }
     }
 }

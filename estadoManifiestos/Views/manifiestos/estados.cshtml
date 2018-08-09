@@ -86,12 +86,12 @@
                                 <td>
                                     @switch (manifiesto.estMinisterio)
                                     {
-                                        case 1:
+                                        case "E":
                                         <span class="badge badge-pill badge-success bagdEnviadoMt" data-toggle="collapse" href="@("#enMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
                                         <div class="collapse" id="@("enMt" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 2:
+                                        case "P":
                                         <span class="badge badge-pill badge-warning bagdPendienteMt"  data-toggle="collapse" href="@("#pMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
                                         <div class="collapse" id="@("pMt" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -103,12 +103,12 @@
                                             </div>
                                         </div>   
                                             break;
-                                        case 3:
+                                        case "R":
                                         <span class="badge badge-pill badge-danger bagdRechazadoMt" data-toggle="collapse" href="@("#rcMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
                                         <div class="collapse" id="@("rcMt" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 4:
+                                        case "NC":
                                         <span class="badge badge-pill badge-danger bagdncMt" data-toggle="collapse" href="@("#nrMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
                                         <div class="collapse" id="@("nrMt" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                             break;
-                                        case 5:
+                                        case "U":
                                         <span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="@("#naMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Urbano</span>
                                         <div class="collapse" id="@("naMt" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -129,16 +129,13 @@
                                         </div>
                                             break;
 
-                                        case 6:
-                                        <span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="@("#naMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
+                                        case "NA":
+                                        <span class="badge badge-pill badge-light bagdNaMt" data-toggle="collapse" href="@("#naMt" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
                                         <div class="collapse" id="@("prMt" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Los viajes de vehículos propios que son despachados por otra empresa de transporte no se reportan al ministerio.</p>
+                                                <p>Este viaje no se reporta al ministerio.</p>
                                             </div>
                                         </div>
-                                            break;
-                                        default:
-                                        <span>Desconocido</span>
                                             break;
                                     }
                                 </td>
@@ -146,12 +143,12 @@
                                 <td>
                                     @switch (manifiesto.estDestseguro)
                                     {
-                                        case 1:
+                                        case "E":
                                         <span class="badge badge-pill badge-success bagdEnviadoDs" data-toggle="collapse" href="@("#enDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
                                         <div class="collapse" id="@("enDs" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 2:
+                                        case "P":
                                         <span class="badge badge-pill badge-warning bagdPendienteDs"  data-toggle="collapse" href="@("#pDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
                                         <div class="collapse" id="@("pDs" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -163,12 +160,12 @@
                                             </div>
                                         </div>   
                                             break;
-                                        case 3:
+                                        case "R":
                                         <span class="badge badge-pill badge-danger bagdRechazadoDs" data-toggle="collapse" href="@("#rcDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
                                         <div class="collapse" id="@("rcDs" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 4:
+                                        case "NC":
                                         <span class="badge badge-pill badge-danger bagdncDs" data-toggle="collapse" href="@("#nrDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
                                         <div class="collapse" id="@("nrDs" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -180,16 +177,13 @@
                                             </div>
                                         </div>
                                             break;
-                                        case 6:
-                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Propio</span>
+                                        case "NA":
+                                        <span class="badge badge-pill badge-light bagdnaDs" data-toggle="collapse" href="@("#naDs" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
                                         <div class="collapse" id="@("naDs" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Los viajes de vehículos Propios no son reportados a Destino Seguro</p>
+                                                <p>Este viaje no se reporta a Destino Seguro</p>
                                             </div>
                                         </div> 
-                                            break;
-                                        default:
-                                        <span>Desconocido</span>
                                             break;
                                     }
 
@@ -198,12 +192,12 @@
                                 <td>
                                     @switch (manifiesto.estOsp)
                                     {
-                                        case 1:
+                                        case "E":
                                         <span class="badge badge-pill badge-success bagdEnviadoOsp" data-toggle="collapse" href="@("#enOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Enviado</span>
                                         <div class="collapse" id="@("enOsp" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 2:
+                                        case "P":
                                         <span class="badge badge-pill badge-warning bagdPendienteOsp"  data-toggle="collapse" href="@("#pOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Pendiente</span>
                                         <div class="collapse" id="@("pOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -215,12 +209,12 @@
                                             </div>
                                         </div>   
                                             break;
-                                        case 3:
+                                        case "R":
                                         <span class="badge badge-pill badge-danger bagdRechazadoOsp" data-toggle="collapse" href="@("#rcOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Rechazado</span>
                                         <div class="collapse" id="@("rcOsp" + manifiesto.nroPlanilla)">
                                         </div>
                                             break;
-                                        case 4:        
+                                        case "NC":        
                                         <span class="badge badge-pill badge-danger bagdncOsp" data-toggle="collapse" href="@("#nrOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Catalogado</span>
                                         <div class="collapse" id="@("nrOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
@@ -232,16 +226,13 @@
                                             </div>
                                         </div>                                    
                                             break;
-                                        case 6:
-                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">Tercero</span>
+                                        case "NA":
+                                        <span class="badge badge-pill badge-light bagdnaOsp" data-toggle="collapse" href="@("#naOsp" + manifiesto.nroPlanilla)" role="button" aria-expanded="false">No Aplica</span>
                                         <div class="collapse" id="@("naOsp" + manifiesto.nroPlanilla)">
                                             <div class="card card-body">
-                                                <p>Los viajes de vehículos terceros no son reportados a OSP</p>
+                                                <p>Este viaje no se reporta a OSP</p>
                                             </div>
                                         </div>
-                                            break;
-                                        default:
-                                        <span>Desconocido</span>
                                             break;
                                     }
                                 </td>
